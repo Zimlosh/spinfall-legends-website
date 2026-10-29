@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spinfall Legends</title>
+<meta name="description" content="Spinfall Legends: a fantasy arena RPG where your hero is a spinning ball with a weapon. 41 heroes, 84 weapons, 10 lands, 85 bosses. Coming soon to iPhone and Android.">
+<meta property="og:title" content="Spinfall Legends">
+<meta property="og:description" content="Spin into battle. 41 heroes, 84 weapons, 10 lands and 85 bosses. Coming soon to iPhone and Android.">
+<meta property="og:image" content="img/share.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#3fa5fd">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
+     (Netlify or Cloudflare Pages) and point spinfalllegends.com at it. The heroes, weapons, bosses and areas come from the game (data.js and img/, made by
+     tools/site/data.js); the battle shots are staged in the game with Claude's photo mode (tools/site/shots.js). -->
+
+<section class="hero">
+  <div class="hero-art"><img class="hero-bg" src="img/banner.webp" alt="Heroes of Spinfall Legends with their weapons"><img class="hero-logo" src="img/logo.png" alt="Spinfall Legends"></div>
+  <div class="hero-in">
+    <p class="tag">Spin into battle.</p>
+    <p class="lead">Your hero is a spinning ball with a weapon. Bounce, clash, parry and dash your way through ten lands, with your friends at your side.</p>
+    <p class="plat"><span class="dot"></span>Coming soon to iPhone and Android</p>
+  </div>
+</section>
+
+<section class="counts">
+  <div><b data-n="41">41</b><span>Heroes</span></div>
+  <div><b data-n="84">84</b><span>Weapons</span></div>
+  <div><b data-n="10">10</b><span>Lands</span></div>
+  <div><b data-n="85">85</b><span>Bosses</span></div>
+  <div><b data-n="11">11</b><span>Pets</span></div>
+</section>
+
+<section class="sec action">
+  <h2>Every fight is <em>physics</em></h2>
+  <p class="sub">Aim a dash, block a swing, parry at the perfect moment, then let your ult loose. No auto-battle: you're in control.</p>
+  <div class="shots">
+    <figure class="shot"><img src="img/shot_boss.webp" alt="Four heroes against Azgaroth the Demon King" loading="lazy"><figcaption><b>World bosses</b>Team up against giants with rare legendary drops.</figcaption></figure>
+    <figure class="shot"><img src="img/shot_clash.webp" alt="The Peasant and Berry against orcs in Goblin Hollow" loading="lazy"><figcaption><b>Dungeons</b>Fight through the stages, then the boss.</figcaption></figure>
+    <figure class="shot"><img src="img/shot_cove.webp" alt="Blackbeard and Marina boarding a pirate ship" loading="lazy"><figcaption><b>Co-op</b>Bring a friend into any fight.</figcaption></figure>
+  </div>
+</section>
+
+<section class="sec heroes" id="heroes">
+  <h2><span class="num">41</span> heroes to collect</h2>
+  <p class="sub">From a peasant with a loaf of bread to a demon knight and a fallen angel. Every hero has their own ult and passive, levels up to 100, and can become a veteran.</p>
+  <p class="hint"><span class="tapdot"></span>Tap any hero to see their ult, passive and veteran numbers</p>
+  <div class="facewall" id="faceWall"></div>
+  <p class="legend"><i class="r-common"></i>Common <i class="r-rare"></i>Rare <i class="r-legendary"></i>Legendary</p>
+</section>
+
+<section class="sec weapons" id="weapons">
+  <h2><span class="num">84</span> weapons to master</h2>
+  <p class="sub">Swords, bows, flails, staffs, shields, a war drum, a magic tome... Every one spins differently, and many hide a trick: bursts, poison, worms under the sand.</p>
+  <p class="hint"><span class="tapdot"></span>Tap any weapon to see its ability, numbers and red stars</p>
+  <div class="rack" id="rack"></div>
+</section>
+
+<section class="sec world" id="world">
+  <h2>A journey through <span class="num">10</span> lands</h2>
+  <p class="sub">Each land has its own three dungeons, a delve that goes on forever, and a world boss at the end.</p>
+  <div class="lands" id="lands"></div>
+</section>
+
+<div class="edge" data-k="rock" data-a="#efe0bf" data-b="#3b1c10" aria-hidden="true"></div>
+
+<section class="sec bosses" id="bosses">
+  <h2><span class="num">85</span> bosses waiting</h2>
+  <p class="sub">From mine foremen to the Demon King himself. Some you face alone, some you bring a party for, and some take your whole guild.</p>
+  <div class="tiers" id="tiers"></div>
+</section>
+
+<div class="edge" data-k="hills" data-a="#24140b" data-b="#f6ead0" aria-hidden="true"></div>
+
+<section class="sec pets" id="more">
+  <h2><span class="num">11</span> pets at your side</h2>
+  <p class="sub">A pet fights beside you with its own weapon and its own trick: Berry the bear pushes enemies back, the Baby Dragon sets them on fire, the Hellpup bites with all three heads.</p>
+  <p class="hint"><span class="tapdot"></span>Tap any pet to see what it does</p>
+  <div class="petrow" id="petRow"></div>
+</section>
+
+<div class="edge" data-k="torn" data-a="#efe0bf" data-b="#5a2f12" aria-hidden="true"></div>
+
+<section class="sec wanted">
+  <div class="split">
+    <div class="split-art"><img class="board" src="img/u_wantedboard.webp" alt="The Wanted board" loading="lazy"></div>
+    <div class="split-copy">
+      <h2 class="left">The <em>Wanted</em></h2>
+      <p class="sub left">Every week a new outlaw roams the dungeons, fighting everyone in its way, you and the monsters alike. Hunt it down for a piece of its legendary weapon.</p>
+      <div class="wantedrow" id="wantedRow"></div>
+    </div>
+  </div>
+</section>
+
+<div class="edge" data-k="bubbles" data-a="#3b1c10" data-b="#f6ead0" aria-hidden="true"></div>
+
+<section class="sec brew">
+  <div class="split rev">
+    <div class="split-copy">
+      <h2 class="left">The <em>Brew Station</em></h2>
+      <p class="sub left">Gather <b>40 ingredients</b> from the enemies of every land, then brew <b>18 potions</b> at one, two or three stars. Pour two into one bottle for a mix with both effects.</p>
+      <div class="potrow" id="potRow"></div>
+      <p class="hint left"><span class="tapdot"></span>Tap any potion to see it at 1, 2 and 3 stars</p>
+    </div>
+    <div class="split-art brewart"><img class="cauldron" src="img/u6_cauldron.webp" alt="" loading="lazy"><img class="brewer" src="img/u6_brewmaster.webp" alt="The Brewmaster" loading="lazy"></div>
+  </div>
+  <div class="ingrow" id="ingRow"></div>
+</section>
+
+<div class="edge" data-k="magic" data-a="#eedcf3" data-b="#3a2163" aria-hidden="true"></div>
+
+<section class="sec rift">
+  <div class="split">
+    <div class="split-art riftart"><img src="img/rift.webp" alt="The Memory Rift" loading="lazy"></div>
+    <div class="split-copy">
+      <h2 class="left">The <em>Memory Rift</em></h2>
+      <p class="sub left">Step through the Rift into the Memory Trials: maps from every land you've reached, one after another, with remembered enemies that fight dirty. At the end, the Time Capsule holds a relic.</p>
+    </div>
+  </div>
+  <h3 class="relich"><span class="num">20</span> relics to wear</h3>
+  <p class="sub">One relic at a time, working in every fight: faster spins, harder hits, life steal, quicker ults. Level them up, then give them red stars.</p>
+  <p class="hint"><span class="tapdot"></span>Tap any relic to see what it does at each level</p>
+  <div class="relicrow" id="relicRow"></div>
+</section>
+
+<div class="edge" data-k="mist" data-a="#23123d" data-b="#f6ead0" aria-hidden="true"></div>
+
+<section class="sec together">
+  <div class="tog">
+    <div class="tog-shot"><img src="img/shot_pvp.webp" alt="A 2v2 in the Coliseum" loading="lazy"></div>
+    <div class="tog-copy">
+      <h2>Better <em>together</em></h2>
+      <ul class="ticks">
+        <li><b>Party up</b> with up to three friends for dungeons and world boss raids.</li>
+        <li><b>Join a guild:</b> weekly guild bosses, a guild shop, chat and a leaderboard.</li>
+        <li><b>The Coliseum:</b> 1v1 and 2v2 PvP, first to three rounds. Climb six leagues.</li>
+        <li><b>No casino:</b> no spinning reels and no paid random rolls. You beat the boss, then you open your chest.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="more">
+    <figure class="shot"><img src="img/shot_glade.webp" alt="The Glade Fairy and the Elven Ranger in the Glimmerwood" loading="lazy"><figcaption><b>The Glimmerwood</b>Fairies, elves and mushroom folk.</figcaption></figure>
+    <figure class="shot"><img src="img/shot_citadel.webp" alt="The Hellknight in the Brimstone Citadel" loading="lazy"><figcaption><b>The Infernum</b>The last land, and the hardest.</figcaption></figure>
+  </div>
+</section>
+
+<div class="edge" data-k="clouds" data-a="#f6ead0" data-b="#6ab9f2" aria-hidden="true"></div>
+
+<section class="soon">
+  <img class="soon-face" src="img/icon-512.png" alt="">
+  <h2>Coming soon</h2>
+  <p>Spinfall Legends is in development for iPhone and Android. Playtests come first.</p>
+  <p class="mail">Questions? <a href="mailto:team@spinfalllegends.com">team@spinfalllegends.com</a></p>
+</section>
+
+<div class="edge" data-k="forest" data-a="#3b8fdc" data-b="#24140b" aria-hidden="true"></div>
+
+<footer class="foot">
+  <img src="img/logo-small.png" alt="Spinfall Legends">
+  <p>© 2026 Spinfall Legends · All pictures are from the game in development.</p>
+</footer>
+
+<div class="pop" id="pop" hidden>
+  <div class="pop-bg" id="popBg"></div>
+  <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="popName"><i class="pop-grab"></i><button class="pop-x" id="popX" aria-label="Close">&times;</button><div class="pop-body" id="popBody"></div></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+// the content sections, filled from the game's own lists (data.js)
+const $ = id => document.getElementById(id);
+const face = (img, spr, cls = "") => `<span class="ball ${cls}" style="--ws:${spr[0]};--oy:${spr[1]}"><img src="img/${img}.webp" alt="" loading="lazy"></span>`;
+const ORDER = { legendary: 0, rare: 1, common: 2 };
+// heroes: legendary first, then rare, then common
+$("faceWall").innerHTML = GAME.heroes.slice().sort((a, b) => ORDER[a.rar] - ORDER[b.rar])
+  .map(h => `<figure class="hero-t tap r-${h.rar}" data-t="h" data-k="${h.k}">${face("h_" + h.k, h.spr)}<figcaption>${h.name}</figcaption></figure>`).join("");
+// weapons: one row a rarity
+$("rack").innerHTML = ["legendary", "rare", "common"].map(r => { const L = GAME.weapons.filter(w => w.rar === r);
+  return `<div class="rackrow"><h3 class="r-${r}">${r[0].toUpperCase() + r.slice(1)} <small>${L.length}</small></h3><div class="wgrid">${L.map(w =>
+    `<figure class="wpn tap r-${r}" data-t="w" data-k="${w.k}" title="${w.name}"><img src="img/w_${w.k}.webp" alt="${w.name}" loading="lazy"></figure>`).join("")}</div></div>`; }).join("");
+// the lands, in order, each with its map painting
+$("lands").innerHTML = GAME.areas.map(a => `<figure class="land"><img src="img/area_${a.n}.webp" alt="${a.name}" loading="lazy"><figcaption><small>Land ${a.n}</small><b>${a.name}</b><span>${a.dungeons.join(" · ")}</span></figcaption></figure>`).join("");
+// the bosses in tiers, biggest first: the guild bosses, the ten world bosses, the dungeon bosses, then the mini-bosses (the delves' and the Wanted)
+const byK = k => [...GAME.wbs].find(b => b.k === k);
+const WORLD = [["briar"], ["swamp"], ["vlord"], ["ashmaw"], ["kharun"], ["kraken"], ["zalkess", "The Sunscale Conclave"], ["nyssa", "The Blighted Court"], ["rhakhar"], ["azgaroth"]].map(([k, n]) => Object.assign({}, byK(k), n ? { name: n } : {}));
+const TIERS = [["Guild bosses", "Your whole guild against one giant each week", GAME.gbs, "xl"], ["World bosses", "One at the end of every land", WORLD, "lg"],
+  ["Dungeon bosses", "Waiting at the end of every dungeon", GAME.dbs, "md"], ["Mini-bosses", "Deep in the delves, and the Wanted on the loose", [...GAME.minis, ...GAME.wanted.map(w => Object.assign({}, w, { k: "wt_" + w.k }))], "sm"]];
+$("tiers").innerHTML = TIERS.map(([t, line, L, size]) => `<div class="tier ${size}"><h3><b>${t}</b><span class="tcount">${L.length}</span><small>${line}</small></h3>
+  <div class="tierrow">${L.map(b => `<figure class="boss" title="${b.name}">${face((b.k.startsWith("wt_") ? "" : "b_") + b.k, b.spr)}${size === "sm" ? "" : `<figcaption>${b.name}</figcaption>`}</figure>`).join("")}</div></div>`).join("");
+// pets, each holding its weapon
+$("petRow").innerHTML = GAME.pets.map(p => `<figure class="pet tap" data-t="p" data-k="${p.k}"><span class="petart"><img class="petface" src="img/p_${p.k}.webp" alt="" loading="lazy"><img class="petw" src="img/pw_${p.k}.webp" alt="" loading="lazy"></span><figcaption>${p.name}</figcaption></figure>`).join("");
+// the Wanted's five, the potions, the ingredients, the relics
+$("wantedRow").innerHTML = GAME.wanted.map(w => `<figure class="wantedcard">${face("wt_" + w.k, w.spr)}<figcaption>${w.name}</figcaption></figure>`).join("");
+$("potRow").innerHTML = GAME.potions.map(p => `<img class="tap" data-t="pot" data-k="${p.k}" src="img/pot_${p.k}.webp" alt="${p.name}" title="${p.name}" loading="lazy">`).join("");
+$("ingRow").innerHTML = GAME.ings.map(i => `<img src="img/ing_${i.k}.webp" alt="${i.name}" title="${i.name}" loading="lazy">`).join("");
+$("relicRow").innerHTML = GAME.relics.map(r => `<figure class="relic tap ${r.glob ? "glob" : ""}" data-t="r" data-k="${r.k}" title="${r.name}"><img src="img/rl_${r.k}.webp" alt="${r.name}" loading="lazy"></figure>`).join("");
+
+// ---- the pop-up cards (Oct 29, Jake: "like the Wikipedia for our game"; the SAME pattern as the game's pages since the same day): what it is and
+// does, then ONE table of its numbers, a column per step (tiers, stars or levels) and, with the switch, its red stars (max, 1, 2, 3 red). No
+// explanation text: the table says it. Everything comes from the game itself (GAME.info, made by tools/site/data.js).
+const I = GAME.info, by = (L, k) => L.find(x => x.k === k), RAR = { common: "Common", rare: "Rare", legendary: "Legendary" };
+const STARS = (red, n = 1, of = 0) => `<span class="stars">${`<img src="img/${red ? "star_red" : "star_gold"}.webp" alt="">`.repeat(n)}${of > n ? `<img class="dim" src="img/star_gold.webp" alt="">`.repeat(of - n) : ""}</span>`;
+const chip = (t, c = "") => `<span class="pchip ${c}">${t}</span>`;
+const sec = t => `<h4 class="psec">${t}</h4>`;
+// ONE table: head is the column headings, rows [label, ...cells]; a cell may be { v, d }: a value and, under it, what it gained
+const cell = c => c && typeof c === "object" ? `<b>${c.v}</b>${c.d ? `<small class="up">${c.d}</small>` : ""}` : c;
+const table = (head, rows) => `<table class="ptab"><thead><tr><th></th>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead>
+  <tbody>${rows.map(r => `<tr>${r.map((c, i) => `<td>${i ? cell(c) : c}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+const list = rows => `<div class="plist">${rows.map(([lab, t]) => `<div><span>${lab}</span><p>${t}</p></div>`).join("")}</div>`;
+// the switch: the gold steps, or the red stars (the same on every card)
+const toggle = (off, on) => `<div class="tgl"><button class="ptog" role="switch" aria-checked="false"><span class="tsw"><i></i></span>Show red stars ${STARS(1, 3)}</button>
+  <div class="tv">${off}</div><div class="tv" hidden>${on}</div></div>`;
+const GOLD3 = [1, 2, 3].map(n => STARS(0, n, 3)), RED4 = [STARS(0, 3), STARS(1, 1, 0) , STARS(1, 2), STARS(1, 3)];
+const TIER_H = ["Tier 1", "Tier 2", "Tier 3"], LEVEL_H = ["Level 1", "Level 2", "Level 3"];
+const plus = (a, b) => { const d = Math.round((parseFloat(b) - parseFloat(a)) * 10) / 10; return d > 0 ? "+" + d : ""; };
+const gains = row => [row[0], row[1], ...row.slice(2).map(v => ({ v, d: plus(row[1], v) }))];
+const found = t => t ? `<p class="pfound"><b>Found in</b>${t}</p>` : "";
+function heroCard(k) {
+  const h = by(GAME.heroes, k), x = I.h[k];
+  return { art: `<span class="part ball-art r-${h.rar}">${face("h_" + k, h.spr)}</span>`, name: h.name, chips: chip(RAR[h.rar] + " hero", "r-" + h.rar), body:
+    `<div class="pab ult"><i>ULT</i><b>${x.ult}</b><p>${x.ultTxt}</p></div><div class="pab pas"><i>PASSIVE</i><b>${x.pas}</b><p>${x.pasTxt}</p></div>
+    ${x.stars.length ? sec("Stars") + toggle(table(GOLD3, x.stars), table(RED4, x.reds.map(gains))) : ""}${found(x.from)}` };
+}
+function weaponCard(k) {
+  const w = by(GAME.weapons, k), x = I.w[k];
+  const ROWS = [[x.t1.shot ? "Melee" : "Damage", "dmg"], ...(x.t1.shot ? [["Shot" + (x.knives ? " ×3" : ""), "shot"]] : []), ["Spin", "spin"], ...(x.t1.reach ? [["Reach", "reach"]] : [])];
+  const tiers = table(TIER_H, ROWS.map(([lab, f]) => [lab, x.t1[f], x.t2[f], x.t3[f]])) + (x.tiers.length ? list(x.tiers.map((t, i) => ["T" + (i + 1), t])) : "");
+  const rl = ROWS.find(([, f]) => f === x.rst) || ROWS[0], reds = table(RED4, [gains([rl[0], ...["t3", "r1", "r2", "red"].map(c => x[c][rl[1]])])]);
+  return { art: `<span class="part wpn-art r-${w.rar}"><img src="img/w_${k}.webp" alt=""></span>`, name: w.name, chips: chip(RAR[w.rar] + " weapon", "r-" + w.rar),
+    body: `${x.ab ? `<div class="pab"><i>ABILITY</i><b>${x.ab.t}</b><p>${x.ab.d}</p></div>` : `<p class="pnote">${x.note}</p>`}${sec("Tiers")}${toggle(tiers, reds)}${found(x.from)}` };
+}
+function petCard(k) {
+  const p = by(GAME.pets, k), x = I.p[k], tiers = list(x.tiers.map((t, i) => ["T" + (i + 1), t]));
+  const reds = table(RED4, [["Damage", "+0%", "+5%", "+10%", "+15%"], ["Health", "+0%", "+5%", "+10%", "+15%"]]);
+  return { art: `<span class="part pet-art r-${p.rar}"><img class="petface" src="img/p_${k}.webp" alt=""><img class="petw" src="img/pw_${k}.webp" alt=""></span>`, name: p.name,
+    chips: chip(RAR[p.rar] + " pet", "r-" + p.rar), body: `<p class="pnote">${x.note}</p><div class="pab"><i>WEAPON</i><b>${x.wname}</b></div>
+    ${sec("Tiers")}${x.red ? toggle(tiers, reds) : tiers}${found(x.from)}` };
+}
+function relicCard(k) {
+  const r = by(GAME.relics, k), x = I.r[k];
+  return { art: `<span class="part relic-art${r.glob ? " glob" : ""}"><img src="img/rl_${k}.webp" alt=""></span>`, name: r.name,
+    chips: chip(r.glob ? "Global relic" : "Relic", r.glob ? "r-legendary" : "r-rare"), body: `<p class="pnote">${x.note}</p>
+    ${sec("Levels")}${toggle(table(LEVEL_H, x.lvRows), table(RED4, x.redRows.map(gains)))}${found(x.from)}` };
+}
+function potionCard(k) {
+  const p = by(GAME.potions, k), x = I.pot[k];
+  return { art: `<span class="part pot-art"><img src="img/pot_${k}.webp" alt=""></span>`, name: p.name, chips: chip("Potion", "r-common"),
+    body: `${sec("Stars")}${list(x.lv.map((t, i) => [STARS(0, i + 1, 3), t]))}<p class="pfound"><b>Found in</b>Chests, the merchant, and the Brew Station</p>` };
+}
+const CARDS = { h: heroCard, w: weaponCard, p: petCard, r: relicCard, pot: potionCard };
+const pop = $("pop"); let popFrom = null;
+function openPop(t, k, from) {
+  const c = CARDS[t](k); popFrom = from;
+  $("popBody").innerHTML = `<div class="phead">${c.art}<div><h3 id="popName">${c.name}</h3>${c.chips}</div></div>${c.body}`;
+  for (const b of $("popBody").querySelectorAll(".ptog")) b.onclick = () => { const on = b.getAttribute("aria-checked") !== "true", v = b.parentNode.querySelectorAll(".tv");
+    b.setAttribute("aria-checked", on); v[0].hidden = on; v[1].hidden = !on; };
+  $("popBody").scrollTop = 0; pop.hidden = false; document.documentElement.classList.add("popped");
+  requestAnimationFrame(() => pop.classList.add("on")); $("popX").focus({ preventScroll: true });
+}
+function closePop() {
+  if (pop.hidden) return; pop.classList.remove("on"); document.documentElement.classList.remove("popped");
+  setTimeout(() => { pop.hidden = true; }, 260); if (popFrom) popFrom.focus({ preventScroll: true });
+}
+document.addEventListener("click", e => { const el = e.target.closest(".tap"); if (el) openPop(el.dataset.t, el.dataset.k, el); });
+document.querySelectorAll(".tap").forEach(el => { el.tabIndex = 0; el.setAttribute("role", "button"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closePop(); else if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("tap")) { e.preventDefault(); e.target.click(); } });
+$("popBg").onclick = closePop; $("popX").onclick = closePop;
+
+// ---- the page's life (Oct 28, Jake: "no life, abrupt colour changes") ----
+// a fixed random sequence, so every visit draws the same edges
+const rnd = (seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647)(11);
+// the edges between sections, faceted like the game's art: a back layer (see-through) and a front one in the next section's colour
+const EW = 1440, EH = 120;
+const line = (n, f) => Array.from({ length: n + 1 }, (_, i) => [i === 0 ? 0 : i === n ? EW : (i + (rnd() - .5) * .5) * EW / n, f(i)]);
+const fill = (pts, col, op = 1) => `<path fill="${col}" fill-opacity="${op}" d="M0,${EH} ${pts.map(p => `L${p[0].toFixed(0)},${p[1].toFixed(0)}`).join(" ")} L${EW},${EH} Z"/>`;
+const wave = (n, base, amp, k, ph, jit = 4) => line(n, i => base + amp * Math.sin(i / n * Math.PI * k + ph) + (rnd() - .5) * jit);
+const gon = (x, y, r, sides, col, op = 1, rot = rnd()) => `<polygon fill="${col}" fill-opacity="${op}" points="${Array.from({ length: sides }, (_, j) => { const a = (j / sides + rot) * Math.PI * 2; return `${(x + Math.cos(a) * r).toFixed(1)},${(y + Math.sin(a) * r).toFixed(1)}`; }).join(" ")}"/>`;
+const star = (x, y, r, col) => `<path fill="${col}" d="M${x},${y - r} L${x + r * .28},${y - r * .28} L${x + r},${y} L${x + r * .28},${y + r * .28} L${x},${y + r} L${x - r * .28},${y + r * .28} L${x - r},${y} L${x - r * .28},${y - r * .28} Z"/>`;
+const EDGES = {
+  rock: b => fill(line(16, i => i % 2 ? 8 + rnd() * 30 : 50 + rnd() * 26), b, .45) + fill(line(26, i => i % 2 ? 40 + rnd() * 34 : 84 + rnd() * 18), b),
+  hills: b => fill(wave(30, 54, 22, 3, .6), b, .4) + fill(wave(36, 80, 16, 4, 2.2), b),
+  torn: b => fill(line(96, i => 66 + (i % 2 ? -7 : 7) + (rnd() - .5) * 6), b, .35) + fill(line(110, i => 78 + (i % 2 ? -6 : 6) + (rnd() - .5) * 8), b),
+  bubbles: b => fill(wave(32, 82, 10, 5, 1), b, .4) + fill(wave(40, 94, 9, 6, .3), b)
+    + Array.from({ length: 26 }, () => gon(rnd() * EW, 22 + rnd() * 58, 4 + rnd() * 11, 8, b, .55 + rnd() * .45)).join(""),
+  magic: b => fill(wave(34, 60, 20, 3, 2.6), b, .4) + fill(wave(40, 86, 14, 4, .8), b)
+    + Array.from({ length: 16 }, () => star(rnd() * EW, 16 + rnd() * 40, 5 + rnd() * 9, b)).join(""),
+  mist: b => fill(wave(30, 40, 16, 2, 1.4), b, .25) + fill(wave(34, 64, 16, 3, .2), b, .5) + fill(wave(40, 88, 12, 4, 2), b),
+  clouds: (b, a) => { const C = [[4, 100], [0, 70], [10, 46], [24, 40], [32, 14], [50, 0], [66, 12], [74, 34], [90, 36], [100, 64], [96, 100]];
+    const cloud = (x, y, k, col) => `<polygon fill="${col}" points="${C.map(([u, v]) => `${(x + u * 2.2 * k).toFixed(0)},${(y + (v - 100) * .8 * k).toFixed(0)}`).join(" ")}"/>`;
+    let s = `<path fill="${a}" d="M0,0 ${wave(36, 42, 10, 4, 1.2).map(p => `L${p[0].toFixed(0)},${p[1].toFixed(0)}`).join(" ")} L${EW},0 Z"/>`;
+    for (let x = -60; x < EW; x += 190 + rnd() * 170) { const k = .45 + rnd() * .4, y = 92 + rnd() * 18; s += cloud(x, y + 6, k, "#c4dcf3") + cloud(x, y, k, "#fff"); }
+    return s; },
+  forest: b => { const pine = (x, y, h, op) => { const w = h * .36; return `<polygon fill="${b}" fill-opacity="${op}" points="${x - w},${y} ${x},${y - h * .62} ${x + w},${y}"/><polygon fill="${b}" fill-opacity="${op}" points="${x - w * .78},${y - h * .4} ${x},${y - h} ${x + w * .78},${y - h * .4}"/>`; };
+    let s = fill(wave(30, 70, 14, 3, 1.1), b, .4); for (let x = 0; x < EW; x += 26 + rnd() * 50) s += pine(x, 78 + rnd() * 8, 40 + rnd() * 34, .4);
+    for (let x = 14; x < EW; x += 40 + rnd() * 80) s += pine(x, 100, 34 + rnd() * 40, 1); return s + fill(wave(40, 96, 6, 5, .4), b); },
+};
+document.querySelectorAll(".edge").forEach(e => { const { k, a, b } = e.dataset; e.style.background = k === "clouds" ? b : a;
+  e.innerHTML = `<svg viewBox="0 0 ${EW} ${EH}" preserveAspectRatio="xMidYMax slice">${EDGES[k](b, a)}</svg>`; });
+// floating things: embers over the bosses, bubbles in the Brew Station, sparkles in the Rift, clouds drifting through the sky
+const amb = (sel, kind, n, f) => { const s = document.querySelector(sel); const box = document.createElement("div"); box.className = "amb amb-" + kind; box.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < n; i++) { const el = document.createElement("i"); el.style.cssText = f(i); box.appendChild(el); } s.prepend(box); };
+const R = (a, b) => (a + rnd() * (b - a)).toFixed(2);
+amb(".bosses", "ember", 22, () => `left:${R(0, 100)}%;--s:${R(.5, 1.3)};--t:${R(7, 14)}s;--d:-${R(0, 14)}s;--x:${R(-40, 40)}px`);
+amb(".brew", "bubble", 14, () => `left:${R(0, 100)}%;--s:${R(.5, 1.4)};--t:${R(9, 16)}s;--d:-${R(0, 16)}s;--x:${R(-30, 30)}px`);
+amb(".rift", "spark", 26, () => `left:${R(2, 98)}%;top:${R(2, 96)}%;--s:${R(.4, 1.2)};--t:${R(2.5, 5)}s;--d:-${R(0, 5)}s`);
+amb(".soon", "cloud", 5, i => `top:${R(8, 70)}%;--s:${R(.6, 1.3)};--t:${R(40, 70)}s;--d:-${R(0, 60)}s`);
+// things rise into place as they scroll into view, a row at a time
+const RV = ".sec h2, .sec .sub, .relich, .tier h3, .rackrow h3, .counts > div, .shot, .tog-shot, .hero-t, .wpn, .land, .boss, .pet, .wantedcard, .potrow img, .ingrow img, .relic, .ticks li, .brewart, .riftart, .soon-face, .soon h2, .soon p";
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -6% 0px" });
+  document.querySelectorAll(RV).forEach(el => { el.style.setProperty("--d", ([...el.parentNode.children].indexOf(el) % 8) * 50 + "ms"); el.classList.add("rv"); io.observe(el); });
+  // the five numbers count up the first time they show
+  const cio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const b = e.target.querySelector("b"), n = +b.dataset.n, t0 = performance.now();
+    const step = t => { const k = Math.min(1, (t - t0) / 1200); b.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step); }), { threshold: .6 });
+  document.querySelectorAll(".counts > div").forEach(d => cio.observe(d));
+}
+</script>
+</body>
+</html>
