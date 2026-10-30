@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=401">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
 </head>
 <body>
 <!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
@@ -208,8 +208,8 @@
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="popName"><i class="pop-grab"></i><button class="pop-x" id="popX" aria-label="Close">&times;</button><div class="pop-body" id="popBody"></div></div>
 </div>
 
-<script src="data.js"></script>
-<script src="news.js"></script>
+<script src="data.js?v=401"></script>
+<script src="news.js?v=401"></script>
 <script>
 // the content sections, filled from the game's own lists (data.js)
 const $ = id => document.getElementById(id);
