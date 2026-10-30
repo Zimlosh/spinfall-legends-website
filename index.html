@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spinfall Legends</title>
-<meta name="description" content="Spinfall Legends: a fantasy arena RPG where your hero is a spinning ball with a weapon. 41 heroes, 84 weapons, 10 lands, 85 bosses. Coming soon to iPhone and Android.">
+<meta name="description" content="Spinfall Legends: a fantasy arena RPG where your hero is a spinning ball with a weapon. 42 heroes, 85 weapons, 10 lands, 85 bosses. Coming soon to iPhone and Android.">
 <meta property="og:title" content="Spinfall Legends">
-<meta property="og:description" content="Spin into battle. 41 heroes, 84 weapons, 10 lands and 85 bosses. Coming soon to iPhone and Android.">
+<meta property="og:description" content="Spin into battle. 42 heroes, 85 weapons, 10 lands and 85 bosses. Coming soon to iPhone and Android.">
 <meta property="og:image" content="img/share.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#3fa5fd">
+<meta name="theme-color" content="#4e2a13">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -24,8 +24,17 @@
      (Netlify or Cloudflare Pages) and point spinfalllegends.com at it. The heroes, weapons, bosses and areas come from the game (data.js and img/, made by
      tools/site/data.js); the battle shots are staged in the game with Claude's photo mode (tools/site/shots.js). -->
 
+<header class="topbar" id="top">
+  <a class="tb-logo" href="#top" aria-label="Spinfall Legends: back to the top"><img src="img/logo-small.png" alt="Spinfall Legends"></a>
+  <nav class="tb-nav" id="tbNav" aria-label="Sections">
+    <a href="#news">News</a><a href="#heroes">Heroes</a><a href="#weapons">Weapons</a><a href="#world">Lands</a><a href="#bosses">Bosses</a><a href="#more">Pets</a><a href="#wanted">Wanted</a><a href="#brew">Brew</a><a href="#rift">Relics</a><a href="#together">Together</a><a class="tb-gift" href="#soon">Gift code</a>
+  </nav>
+</header>
+
 <section class="hero">
-  <div class="hero-art"><img class="hero-bg" src="img/banner.webp" alt="Heroes of Spinfall Legends with their weapons"><img class="hero-logo" src="img/logo.png" alt="Spinfall Legends"></div>
+  <!-- (Oct 30, Jake) the banner: his painted meadow, and the cast on it as pictures from the game, each swaying a little: the Peasant in the middle,
+       the Elven Ranger and the Dark Knight on his left, Marina and the Dragonkin on his right (data.js GAME.cast) -->
+  <div class="hero-art"><div class="scene"><img class="hero-bg" src="img/scene.webp" alt="A meadow below snowy mountains"><div class="cast" id="cast"></div></div><img class="hero-logo" src="img/logo.png" alt="Spinfall Legends"></div>
   <div class="hero-in">
     <p class="tag">Spin into battle.</p>
     <p class="lead">Your hero is a spinning ball with a weapon. Bounce, clash, parry and dash your way through ten lands, with your friends at your side.</p>
@@ -34,8 +43,8 @@
 </section>
 
 <section class="counts">
-  <div><b data-n="41">41</b><span>Heroes</span></div>
-  <div><b data-n="84">84</b><span>Weapons</span></div>
+  <div><b data-n="42">42</b><span>Heroes</span></div>
+  <div><b data-n="85">85</b><span>Weapons</span></div>
   <div><b data-n="10">10</b><span>Lands</span></div>
   <div><b data-n="85">85</b><span>Bosses</span></div>
   <div><b data-n="11">11</b><span>Pets</span></div>
@@ -51,8 +60,14 @@
   </div>
 </section>
 
+<section class="sec news" id="news">
+  <h2>What's <em>new</em></h2>
+  <p class="sub">Updates from the workshop, and what's coming next.</p>
+  <div class="newsgrid" id="newsGrid"></div>
+</section>
+
 <section class="sec heroes" id="heroes">
-  <h2><span class="num">41</span> heroes to collect</h2>
+  <h2><span class="num">42</span> heroes to collect</h2>
   <p class="sub">From a peasant with a loaf of bread to a demon knight and a fallen angel. Every hero has their own ult and passive, levels up to 100, and can become a veteran.</p>
   <p class="hint"><span class="tapdot"></span>Tap any hero to see their ult, passive and veteran numbers</p>
   <div class="facewall" id="faceWall"></div>
@@ -60,7 +75,7 @@
 </section>
 
 <section class="sec weapons" id="weapons">
-  <h2><span class="num">84</span> weapons to master</h2>
+  <h2><span class="num">85</span> weapons to master</h2>
   <p class="sub">Swords, bows, flails, staffs, shields, a war drum, a magic tome... Every one spins differently, and many hide a trick: bursts, poison, worms under the sand.</p>
   <p class="hint"><span class="tapdot"></span>Tap any weapon to see its ability, numbers and red stars</p>
   <div class="rack" id="rack"></div>
@@ -91,7 +106,7 @@
 
 <div class="edge" data-k="torn" data-a="#efe0bf" data-b="#5a2f12" aria-hidden="true"></div>
 
-<section class="sec wanted">
+<section class="sec wanted" id="wanted">
   <div class="split">
     <div class="split-art"><img class="board" src="img/u_wantedboard.webp" alt="The Wanted board" loading="lazy"></div>
     <div class="split-copy">
@@ -104,22 +119,23 @@
 
 <div class="edge" data-k="bubbles" data-a="#3b1c10" data-b="#f6ead0" aria-hidden="true"></div>
 
-<section class="sec brew">
+<section class="sec brew" id="brew">
   <div class="split rev">
     <div class="split-copy">
       <h2 class="left">The <em>Brew Station</em></h2>
       <p class="sub left">Gather <b>40 ingredients</b> from the enemies of every land, then brew <b>18 potions</b> at one, two or three stars. Pour two into one bottle for a mix with both effects.</p>
+      <p class="hint left pothint"><span class="tapdot"></span>Tap any potion to see it at 1, 2 and 3 stars</p>
       <div class="potrow" id="potRow"></div>
-      <p class="hint left"><span class="tapdot"></span>Tap any potion to see it at 1, 2 and 3 stars</p>
     </div>
     <div class="split-art brewart"><img class="cauldron" src="img/u6_cauldron.webp" alt="" loading="lazy"><img class="brewer" src="img/u6_brewmaster.webp" alt="The Brewmaster" loading="lazy"></div>
   </div>
+  <div class="inghead"><h3><span class="num">40</span> ingredients</h3><p>Every land's enemies carry their own. Find them all on your journeys, from goblin ears to dragon scales.</p></div>
   <div class="ingrow" id="ingRow"></div>
 </section>
 
 <div class="edge" data-k="magic" data-a="#eedcf3" data-b="#3a2163" aria-hidden="true"></div>
 
-<section class="sec rift">
+<section class="sec rift" id="rift">
   <div class="split">
     <div class="split-art riftart"><img src="img/rift.webp" alt="The Memory Rift" loading="lazy"></div>
     <div class="split-copy">
@@ -135,7 +151,7 @@
 
 <div class="edge" data-k="mist" data-a="#23123d" data-b="#f6ead0" aria-hidden="true"></div>
 
-<section class="sec together">
+<section class="sec together" id="together">
   <div class="tog">
     <div class="tog-shot"><img src="img/shot_pvp.webp" alt="A 2v2 in the Coliseum" loading="lazy"></div>
     <div class="tog-copy">
@@ -156,26 +172,35 @@
 
 <div class="edge" data-k="clouds" data-a="#f6ead0" data-b="#6ab9f2" aria-hidden="true"></div>
 
-<section class="soon">
+<section class="soon" id="soon">
   <img class="soon-face" src="img/icon-512.png" alt="">
   <h2>Coming soon</h2>
   <p>Spinfall Legends is in development for iPhone and Android. Playtests come first.</p>
   <p class="mail">Questions? <a href="mailto:team@spinfalllegends.com">team@spinfalllegends.com</a></p>
   <div class="gift">
-    <img class="gift-face" src="img/garrick.webp" alt="Old Garrick">
+    <div class="gift-art">
+      <img class="gift-face" src="img/garrick.webp" alt="Old Garrick">
+      <span class="gift-wpn tap" data-t="w" data-k="garrick" title="Garrick's Blade &amp; Buckler"><img src="img/w_garrick.webp" alt="Garrick's Blade &amp; Buckler"></span>
+    </div>
     <div class="gift-copy">
+      <small class="gift-kick">A gift from Old Garrick</small>
       <h3>Start strong.</h3>
-      <p>A gift from Old Garrick: type this code in the game's <b>Settings</b>, under <b>Redeem a code</b>, for his own <b>Blade &amp; Buckler</b>.</p>
-      <div class="gift-code"><span>STARTSTRONG</span><button type="button" id="codeCopy">COPY</button></div>
+      <p>His own <b>Blade &amp; Buckler</b>: a sword, with a buckler that stops enemy shots. In the game, open <b>Settings</b>, then <b>Redeem a code</b>.</p>
+      <div class="gift-code"><span class="gc-tiles" aria-label="STARTSTRONG">STARTSTRONG</span><button type="button" id="codeCopy">COPY</button></div>
     </div>
   </div>
 </section>
 
-<div class="edge" data-k="forest" data-a="#3b8fdc" data-b="#24140b" aria-hidden="true"></div>
+<div class="edge" data-k="forest" data-a="#3b8fdc" data-b="#4e2a13" aria-hidden="true"></div>
 
 <footer class="foot">
-  <img src="img/logo-small.png" alt="Spinfall Legends">
-  <p>© 2026 Spinfall Legends · All pictures are from the game in development.</p>
+  <div class="foot-in">
+    <div class="foot-brand"><img src="img/logo-small.png" alt="Spinfall Legends"><p>A fantasy arena RPG where your hero is a spinning ball with a weapon. Coming soon to iPhone and Android.</p></div>
+    <div class="foot-col"><h4>The game</h4><a href="#news">News</a><a href="#heroes">Heroes</a><a href="#bosses">Bosses</a><a href="#soon">Gift code</a></div>
+    <div class="foot-col"><h4>Help</h4><a href="mailto:team@spinfalllegends.com">Support</a><a href="mailto:team@spinfalllegends.com?subject=Bug%20report">Report a bug</a><a href="mailto:team@spinfalllegends.com?subject=Press">Press</a></div>
+    <div class="foot-col"><h4>Legal</h4><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></div>
+  </div>
+  <p class="foot-small">© 2026 Spinfall Legends · <a href="mailto:team@spinfalllegends.com">team@spinfalllegends.com</a> · All pictures are from the game in development.<br>iPhone is a trademark of Apple Inc. Android is a trademark of Google LLC.</p>
 </footer>
 
 <div class="pop" id="pop" hidden>
@@ -184,11 +209,20 @@
 </div>
 
 <script src="data.js"></script>
+<script src="news.js"></script>
 <script>
 // the content sections, filled from the game's own lists (data.js)
 const $ = id => document.getElementById(id);
 const face = (img, spr, cls = "") => `<span class="ball ${cls}" style="--ws:${spr[0]};--oy:${spr[1]}"><img src="img/${img}.webp" alt="" loading="lazy"></span>`;
 const ORDER = { legendary: 0, rare: 1, common: 2 };
+// the banner's cast: [where across the meadow (%), size, which side the weapon is on]; each bobs and sways on its own beat
+const CAST_AT = { ranger: [13, .8, "l"], darkknight: [31, .9, "l"], peasant: [50, 1.1, "l"], marina: [69, .9, "r"], dragonkin: [87, .84, "r"] };
+$("cast").innerHTML = GAME.cast.map((c, i) => { const [x, s, side] = CAST_AT[c.k], h = GAME.heroes.find(q => q.k === c.k);
+  return `<div class="cm ${side}" style="--x:${x}%;--s:${s};--i:${i}"><i class="cm-sh"></i><div class="cm-bob"><img class="cm-w" src="img/bnw_${c.w}.webp" alt="">${face("bn_" + c.k, c.spr)}</div><span class="sr">${h ? h.name : c.k}</span></div>`; }).join("");
+// the news (news.js): newest first
+const NEWS_TAG = { update: "Out now", soon: "Coming soon", dev: "Behind the scenes" };
+$("newsGrid").innerHTML = NEWS.map((n, i) => `<article class="post t-${n.tag}${i === 0 ? " first" : ""}"><div class="post-art"><img src="img/${n.img}" alt="" loading="lazy"></div>
+  <div class="post-in"><p class="post-meta"><span class="post-tag">${NEWS_TAG[n.tag] || n.tag}</span><time>${n.date}</time></p><h3>${n.title}</h3><p>${n.text}</p></div></article>`).join("");
 // heroes: legendary first, then rare, then common
 $("faceWall").innerHTML = GAME.heroes.slice().sort((a, b) => ORDER[a.rar] - ORDER[b.rar])
   .map(h => `<figure class="hero-t tap r-${h.rar}" data-t="h" data-k="${h.k}">${face("h_" + h.k, h.spr)}<figcaption>${h.name}</figcaption></figure>`).join("");
@@ -198,17 +232,26 @@ $("rack").innerHTML = ["legendary", "rare", "common"].map(r => { const L = GAME.
     `<figure class="wpn tap r-${r}" data-t="w" data-k="${w.k}" title="${w.name}"><img src="img/w_${w.k}.webp" alt="${w.name}" loading="lazy"></figure>`).join("")}</div></div>`; }).join("");
 // the lands, in order, each with its map painting
 $("lands").innerHTML = GAME.areas.map(a => `<figure class="land"><img src="img/area_${a.n}.webp" alt="${a.name}" loading="lazy"><figcaption><small>Land ${a.n}</small><b>${a.name}</b><span>${a.dungeons.join(" · ")}</span></figcaption></figure>`).join("");
-// the bosses in tiers, biggest first: the guild bosses, the ten world bosses, the dungeon bosses, then the mini-bosses (the delves' and the Wanted)
-const byK = k => [...GAME.wbs].find(b => b.k === k);
+// the bosses in tiers, biggest first: the guild bosses, the ten world bosses, the dungeon bosses, then the delves' mini-bosses (the Wanted have their own section)
+const byK = k => [...GAME.wbs].find(b => b.k === k), xK = k => GAME.extra.find(x => x.k === k), wK = k => GAME.wanted.find(w => w.k === k);
+// (Oct 30, Jake) a boss that fights as a group shows the whole group, one name centred under it: the Sunscale Conclave's three shamans, the Blighted Court
+// (Princess Nyssa and her Fungal Colossus), the Silent Three, the Rat King with one of his sewer rats. "lead" stands in front; the others a little smaller.
+const GROUPS = {
+  zalkess: [["b_thalvir", byK("thalvir").spr], ["b_zalkess", byK("zalkess").spr, "lead"], ["b_sorrakan", byK("sorrakan").spr]],
+  nyssa: [["b_nyssa", byK("nyssa").spr, "lead"], ["x_fcolossus", xK("fcolossus").spr, "giant"]],
+  silent: [["x_silent2", xK("silent2").spr], ["x_silent1", xK("silent1").spr, "lead"], ["x_silent3", xK("silent3").spr]],
+  ratking: [["wt_ratking", wK("ratking").spr, "lead"], ["x_sewerrat", xK("sewerrat").spr, "minion"]],
+};
+const bossArt = (k, img, spr) => GROUPS[k] ? `<span class="grp">${GROUPS[k].map(([i, sp, c]) => face(i, sp, c || "")).join("")}</span>` : face(img, spr);
 const WORLD = [["briar"], ["swamp"], ["vlord"], ["ashmaw"], ["kharun"], ["kraken"], ["zalkess", "The Sunscale Conclave"], ["nyssa", "The Blighted Court"], ["rhakhar"], ["azgaroth"]].map(([k, n]) => Object.assign({}, byK(k), n ? { name: n } : {}));
 const TIERS = [["Guild bosses", "Your whole guild against one giant each week", GAME.gbs, "xl"], ["World bosses", "One at the end of every land", WORLD, "lg"],
-  ["Dungeon bosses", "Waiting at the end of every dungeon", GAME.dbs, "md"], ["Mini-bosses", "Deep in the delves, and the Wanted on the loose", [...GAME.minis, ...GAME.wanted.map(w => Object.assign({}, w, { k: "wt_" + w.k }))], "sm"]];
+  ["Dungeon bosses", "Waiting at the end of every dungeon", GAME.dbs, "md"], ["Mini-bosses", "Deep in the delves, one every few rounds", GAME.minis, "sm"]];
 $("tiers").innerHTML = TIERS.map(([t, line, L, size]) => `<div class="tier ${size}"><h3><b>${t}</b><span class="tcount">${L.length}</span><small>${line}</small></h3>
-  <div class="tierrow">${L.map(b => `<figure class="boss" title="${b.name}">${face((b.k.startsWith("wt_") ? "" : "b_") + b.k, b.spr)}${size === "sm" ? "" : `<figcaption>${b.name}</figcaption>`}</figure>`).join("")}</div></div>`).join("");
+  <div class="tierrow">${L.map((b, i) => `${size === "lg" && i === 5 ? '<i class="rowbreak"></i>' : ""}<figure class="boss${GROUPS[b.k] ? " group" : ""}" title="${b.name}">${bossArt(b.k, "b_" + b.k, b.spr)}${size === "sm" ? "" : `<figcaption>${b.name}</figcaption>`}</figure>`).join("")}</div></div>`).join("");
 // pets, each holding its weapon
 $("petRow").innerHTML = GAME.pets.map(p => `<figure class="pet tap" data-t="p" data-k="${p.k}"><span class="petart"><img class="petface" src="img/p_${p.k}.webp" alt="" loading="lazy"><img class="petw" src="img/pw_${p.k}.webp" alt="" loading="lazy"></span><figcaption>${p.name}</figcaption></figure>`).join("");
 // the Wanted's five, the potions, the ingredients, the relics
-$("wantedRow").innerHTML = GAME.wanted.map(w => `<figure class="wantedcard">${face("wt_" + w.k, w.spr)}<figcaption>${w.name}</figcaption></figure>`).join("");
+$("wantedRow").innerHTML = GAME.wanted.map(w => `<figure class="wantedcard${GROUPS[w.k] ? " group" : ""}">${bossArt(w.k, "wt_" + w.k, w.spr)}<figcaption>${w.name}</figcaption></figure>`).join("");
 $("potRow").innerHTML = GAME.potions.map(p => `<img class="tap" data-t="pot" data-k="${p.k}" src="img/pot_${p.k}.webp" alt="${p.name}" title="${p.name}" loading="lazy">`).join("");
 $("ingRow").innerHTML = GAME.ings.map(i => `<img src="img/ing_${i.k}.webp" alt="${i.name}" title="${i.name}" loading="lazy">`).join("");
 $("relicRow").innerHTML = GAME.relics.map(r => `<figure class="relic tap ${r.glob ? "glob" : ""}" data-t="r" data-k="${r.k}" title="${r.name}"><img src="img/rl_${r.k}.webp" alt="${r.name}" loading="lazy"></figure>`).join("");
@@ -291,26 +334,47 @@ const rnd = (seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647)(11
 const EW = 1440, EH = 120;
 const line = (n, f) => Array.from({ length: n + 1 }, (_, i) => [i === 0 ? 0 : i === n ? EW : (i + (rnd() - .5) * .5) * EW / n, f(i)]);
 const fill = (pts, col, op = 1) => `<path fill="${col}" fill-opacity="${op}" d="M0,${EH} ${pts.map(p => `L${p[0].toFixed(0)},${p[1].toFixed(0)}`).join(" ")} L${EW},${EH} Z"/>`;
+// the height of a layer's top edge at x (for setting things ON a layer: stars in a band, trees on a hill)
+const yAt = (P, x) => { for (let i = 1; i < P.length; i++) if (x <= P[i][0]) { const [x0, y0] = P[i - 1], [x1, y1] = P[i]; return y0 + (y1 - y0) * (x - x0) / Math.max(1, x1 - x0); } return P[P.length - 1][1]; };
+const mix = (a, b, t) => "#" + [1, 3, 5].map(i => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t).toString(16).padStart(2, "0")).join("");
 const wave = (n, base, amp, k, ph, jit = 4) => line(n, i => base + amp * Math.sin(i / n * Math.PI * k + ph) + (rnd() - .5) * jit);
 const gon = (x, y, r, sides, col, op = 1, rot = rnd()) => `<polygon fill="${col}" fill-opacity="${op}" points="${Array.from({ length: sides }, (_, j) => { const a = (j / sides + rot) * Math.PI * 2; return `${(x + Math.cos(a) * r).toFixed(1)},${(y + Math.sin(a) * r).toFixed(1)}`; }).join(" ")}"/>`;
-const star = (x, y, r, col) => `<path fill="${col}" d="M${x},${y - r} L${x + r * .28},${y - r * .28} L${x + r},${y} L${x + r * .28},${y + r * .28} L${x},${y + r} L${x - r * .28},${y + r * .28} L${x - r},${y} L${x - r * .28},${y - r * .28} Z"/>`;
+const star = (x, y, r, col, cls = "") => `<path class="${cls}" fill="${col}" d="M${x},${y - r} L${x + r * .28},${y - r * .28} L${x + r},${y} L${x + r * .28},${y + r * .28} L${x},${y + r} L${x - r * .28},${y + r * .28} L${x - r},${y} L${x - r * .28},${y - r * .28} Z"/>`;
 const EDGES = {
   rock: b => fill(line(16, i => i % 2 ? 8 + rnd() * 30 : 50 + rnd() * 26), b, .45) + fill(line(26, i => i % 2 ? 40 + rnd() * 34 : 84 + rnd() * 18), b),
   hills: b => fill(wave(30, 54, 22, 3, .6), b, .4) + fill(wave(36, 80, 16, 4, 2.2), b),
   torn: b => fill(line(96, i => 66 + (i % 2 ? -7 : 7) + (rnd() - .5) * 6), b, .35) + fill(line(110, i => 78 + (i % 2 ? -6 : 6) + (rnd() - .5) * 8), b),
   bubbles: b => fill(wave(32, 82, 10, 5, 1), b, .4) + fill(wave(40, 94, 9, 6, .3), b)
     + Array.from({ length: 26 }, () => gon(rnd() * EW, 22 + rnd() * 58, 4 + rnd() * 11, 8, b, .55 + rnd() * .45)).join(""),
-  magic: b => fill(wave(34, 60, 20, 3, 2.6), b, .4) + fill(wave(40, 86, 14, 4, .8), b)
-    + Array.from({ length: 16 }, () => star(rnd() * EW, 16 + rnd() * 40, 5 + rnd() * 9, b)).join(""),
-  mist: b => fill(wave(30, 40, 16, 2, 1.4), b, .25) + fill(wave(34, 64, 16, 3, .2), b, .5) + fill(wave(40, 88, 12, 4, 2), b),
-  clouds: (b, a) => { const C = [[4, 100], [0, 70], [10, 46], [24, 40], [32, 14], [50, 0], [66, 12], [74, 34], [90, 36], [100, 64], [96, 100]];
-    const cloud = (x, y, k, col) => `<polygon fill="${col}" points="${C.map(([u, v]) => `${(x + u * 2.2 * k).toFixed(0)},${(y + (v - 100) * .8 * k).toFixed(0)}`).join(" ")}"/>`;
-    let s = `<path fill="${a}" d="M0,0 ${wave(36, 42, 10, 4, 1.2).map(p => `L${p[0].toFixed(0)},${p[1].toFixed(0)}`).join(" ")} L${EW},0 Z"/>`;
-    for (let x = -60; x < EW; x += 190 + rnd() * 170) { const k = .45 + rnd() * .4, y = 92 + rnd() * 18; s += cloud(x, y + 6, k, "#c4dcf3") + cloud(x, y, k, "#fff"); }
+  magic: b => { const back = wave(34, 44, 10, 3, 2.6), front = wave(40, 96, 7, 4, .8), n = 13; let s = fill(back, b, .4) + fill(front, b);
+    // (Jake, Oct 30: the stars were clipping) one star per stretch, centred in the band between the two layers and sized to fit inside it
+    for (let i = 0; i < n; i++) { const x = (i + .5) * EW / n + (rnd() - .5) * 40, t = yAt(back, x), f = yAt(front, x), r = Math.max(6, Math.min(12, (f - t) / 2 - 7));
+      s += star(x, (t + f) / 2, r, "#fff7ff", "twk"); }
     return s; },
-  forest: b => { const pine = (x, y, h, op) => { const w = h * .36; return `<polygon fill="${b}" fill-opacity="${op}" points="${x - w},${y} ${x},${y - h * .62} ${x + w},${y}"/><polygon fill="${b}" fill-opacity="${op}" points="${x - w * .78},${y - h * .4} ${x},${y - h} ${x + w * .78},${y - h * .4}"/>`; };
-    let s = fill(wave(30, 70, 14, 3, 1.1), b, .4); for (let x = 0; x < EW; x += 26 + rnd() * 50) s += pine(x, 78 + rnd() * 8, 40 + rnd() * 34, .4);
-    for (let x = 14; x < EW; x += 40 + rnd() * 80) s += pine(x, 100, 34 + rnd() * 40, 1); return s + fill(wave(40, 96, 6, 5, .4), b); },
+  mist: b => fill(wave(30, 40, 16, 2, 1.4), b, .25) + fill(wave(34, 64, 16, 3, .2), b, .5) + fill(wave(40, 88, 12, 4, 2), b),
+  clouds: (b, a) => {
+    // (Jake, Oct 30: "so static") each cloud is a puff of faceted lumps on a flat base, like the game's art, with a soft blue shade under it; a far row
+    // (smaller, paler) and a near row, every cloud drifting slowly to and fro at its own pace
+    const cloud = (x, y, w, col) => { const h = w * .2; let s = `<rect fill="${col}" x="${(x - w / 2).toFixed(0)}" y="${(y - h).toFixed(0)}" width="${w.toFixed(0)}" height="${h.toFixed(0)}" rx="${(h / 2).toFixed(0)}"/>`;
+      const L = [[-.3, .17, .2], [-.08, .25, .55], [.17, .2, .3], [.33, .13, .05]]; for (const [u, r, up] of L) s += gon(x + u * w, y - h * .6 - up * w * .08, r * w, 10, col, 1, rnd()); return s; };
+    const puff = (x, y, w, far) => `<g class="drift" style="--t:${(18 + rnd() * 16).toFixed(1)}s;--x:${(far ? 14 : 26) + rnd() * 18 | 0}px;--d:-${(rnd() * 20).toFixed(1)}s">`
+      + (far ? cloud(x, y, w, "#e3eefa") : cloud(x, y + 5, w, "#bcd6f0") + cloud(x, y, w, "#fff")) + "</g>";
+    let s = `<path fill="${a}" d="M0,0 ${wave(36, 34, 8, 4, 1.2).map(p => `L${p[0].toFixed(0)},${p[1].toFixed(0)}`).join(" ")} L${EW},0 Z"/>`;
+    for (let x = 40; x < EW; x += 170 + rnd() * 140) s += puff(x, 84 + rnd() * 6, 70 + rnd() * 40, true);
+    for (let x = -10; x < EW + 60; x += 230 + rnd() * 170) s += puff(x, 104 + rnd() * 6, 110 + rnd() * 60, false);
+    return s; },
+  forest: (b, a) => {
+    const pine = (x, y, h, col) => { const w = h * .3, tr = h * .14; let s = `<rect fill="${col}" x="${(x - w * .16).toFixed(1)}" y="${(y - tr - 2).toFixed(1)}" width="${(w * .32).toFixed(1)}" height="${(tr + 8).toFixed(1)}"/>`;
+      for (let j = 0; j < 3; j++) { const by = y - tr - j * h * .22, ww = w * (1 - j * .24), top = by - h * .4; s += `<polygon fill="${col}" points="${(x - ww).toFixed(1)},${by.toFixed(1)} ${x.toFixed(1)},${top.toFixed(1)} ${(x + ww).toFixed(1)},${by.toFixed(1)}"/>`; }
+      return s; };
+    const round = (x, y, h, col) => `<rect fill="${col}" x="${(x - h * .05).toFixed(1)}" y="${(y - h * .4).toFixed(1)}" width="${(h * .1).toFixed(1)}" height="${(h * .4 + 8).toFixed(1)}"/>` + gon(x, y - h * .62, h * .34, 7, col) + gon(x - h * .16, y - h * .44, h * .22, 7, col) + gon(x + h * .17, y - h * .46, h * .24, 7, col);
+    const far = mix(b, a, .55), mid = mix(b, a, .3), backG = wave(26, 66, 12, 3, 1.1), frontG = wave(36, 98, 6, 5, .4);
+    let s = "";
+    for (let x = 6; x < EW; x += 22 + rnd() * 30) s += pine(x, yAt(backG, x) + 6, 30 + rnd() * 26, far);
+    s += fill(backG, far);
+    for (let x = 20; x < EW; x += 46 + rnd() * 60) { const y = yAt(frontG, x) + 8, h = 46 + rnd() * 34; s += rnd() < .22 ? round(x, y, h * .8, mid) : pine(x, y, h, mid); }
+    for (let x = 0; x < EW; x += 34 + rnd() * 70) s += pine(x, yAt(frontG, x) + 10, 34 + rnd() * 30, b);
+    return s + fill(frontG, b); },
 };
 document.querySelectorAll(".edge").forEach(e => { const { k, a, b } = e.dataset; e.style.background = k === "clouds" ? b : a;
   e.innerHTML = `<svg viewBox="0 0 ${EW} ${EH}" preserveAspectRatio="xMidYMax slice">${EDGES[k](b, a)}</svg>`; });
@@ -323,7 +387,7 @@ amb(".brew", "bubble", 14, () => `left:${R(0, 100)}%;--s:${R(.5, 1.4)};--t:${R(9
 amb(".rift", "spark", 26, () => `left:${R(2, 98)}%;top:${R(2, 96)}%;--s:${R(.4, 1.2)};--t:${R(2.5, 5)}s;--d:-${R(0, 5)}s`);
 amb(".soon", "cloud", 5, i => `top:${R(8, 70)}%;--s:${R(.6, 1.3)};--t:${R(40, 70)}s;--d:-${R(0, 60)}s`);
 // things rise into place as they scroll into view, a row at a time
-const RV = ".sec h2, .sec .sub, .relich, .tier h3, .rackrow h3, .counts > div, .shot, .tog-shot, .hero-t, .wpn, .land, .boss, .pet, .wantedcard, .potrow img, .ingrow img, .relic, .ticks li, .brewart, .riftart, .soon-face, .soon h2, .soon p";
+const RV = ".post, .sec h2, .sec .sub, .relich, .tier h3, .rackrow h3, .counts > div, .shot, .tog-shot, .hero-t, .wpn, .land, .boss, .pet, .wantedcard, .potrow img, .ingrow img, .relic, .ticks li, .brewart, .riftart, .soon-face, .soon h2, .soon p";
 if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -6% 0px" });
   document.querySelectorAll(RV).forEach(el => { el.style.setProperty("--d", ([...el.parentNode.children].indexOf(el) % 8) * 50 + "ms"); el.classList.add("rv"); io.observe(el); });
@@ -334,7 +398,15 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
     requestAnimationFrame(step); }), { threshold: .6 });
   document.querySelectorAll(".counts > div").forEach(d => cio.observe(d));
 }
-// Old Garrick's code (Big Update 16): COPY puts it on the clipboard
+// the header: the section you're reading is lit up in it (and on a phone, its link slides into view)
+if ("IntersectionObserver" in window) {
+  const links = [...document.querySelectorAll("#tbNav a")], byId = Object.fromEntries(links.map(a => [a.getAttribute("href").slice(1), a]));
+  const seen = new IntersectionObserver(es => es.forEach(e => { const a = byId[e.target.id]; if (!a || !e.isIntersecting) return;
+    links.forEach(l => l.classList.toggle("on", l === a)); const nav = $("tbNav"); nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: "smooth" }); }), { rootMargin: "-45% 0px -50% 0px" });
+  Object.keys(byId).forEach(id => { const s = document.getElementById(id); if (s) seen.observe(s); });
+}
+// Old Garrick's code (Big Update 16): the letters as tiles, two words (Jake, Oct 30: make the code look cool); COPY puts it on the clipboard
+document.querySelector(".gc-tiles").innerHTML = ["START", "STRONG"].map(w => `<span class="gcw">${[...w].map((c, i) => `<i style="--i:${i}">${c}</i>`).join("")}</span>`).join("");
 document.getElementById("codeCopy").onclick = e => {
   const b = e.currentTarget, done = t => { b.textContent = t; setTimeout(() => { b.textContent = "COPY"; }, 1600); };
   if (navigator.clipboard) navigator.clipboard.writeText("STARTSTRONG").then(() => done("COPIED!"), () => done("STARTSTRONG")); else done("STARTSTRONG");
