@@ -161,6 +161,14 @@
   <h2>Coming soon</h2>
   <p>Spinfall Legends is in development for iPhone and Android. Playtests come first.</p>
   <p class="mail">Questions? <a href="mailto:team@spinfalllegends.com">team@spinfalllegends.com</a></p>
+  <div class="gift">
+    <img class="gift-face" src="img/garrick.webp" alt="Old Garrick">
+    <div class="gift-copy">
+      <h3>Start strong.</h3>
+      <p>A gift from Old Garrick: type this code in the game's <b>Settings</b>, under <b>Redeem a code</b>, for his own <b>Blade &amp; Buckler</b>.</p>
+      <div class="gift-code"><span>STARTSTRONG</span><button type="button" id="codeCopy">COPY</button></div>
+    </div>
+  </div>
 </section>
 
 <div class="edge" data-k="forest" data-a="#3b8fdc" data-b="#24140b" aria-hidden="true"></div>
@@ -326,6 +334,11 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
     requestAnimationFrame(step); }), { threshold: .6 });
   document.querySelectorAll(".counts > div").forEach(d => cio.observe(d));
 }
+// Old Garrick's code (Big Update 16): COPY puts it on the clipboard
+document.getElementById("codeCopy").onclick = e => {
+  const b = e.currentTarget, done = t => { b.textContent = t; setTimeout(() => { b.textContent = "COPY"; }, 1600); };
+  if (navigator.clipboard) navigator.clipboard.writeText("STARTSTRONG").then(() => done("COPIED!"), () => done("STARTSTRONG")); else done("STARTSTRONG");
+};
 </script>
 </body>
 </html>

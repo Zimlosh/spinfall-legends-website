@@ -165,6 +165,16 @@ h2.left, .sub.left { text-align: left; margin-left: 0; }
 .soon h2 { color: #fff; text-shadow: 0 4px 0 rgba(20, 50, 100, .4); }
 .soon p { margin: 6px 0; font-size: 19px; }
 .mail a { font-family: var(--display); color: var(--gold); }
+/* Old Garrick's gift (Big Update 16): his face, "Start strong.", the code and COPY */
+.gift { display: flex; align-items: center; gap: 22px; max-width: 620px; margin: 46px auto 0; padding: 22px 26px; text-align: left; background: rgba(255, 255, 255, .16); border: 3px solid rgba(255, 255, 255, .55); border-radius: 26px; box-shadow: 0 12px 26px rgba(10, 40, 80, .25); }
+.gift-copy { flex: 1; min-width: 0; }
+.gift-face { flex: none; width: 118px; height: auto; filter: drop-shadow(0 6px 8px rgba(10, 40, 80, .35)); }
+.gift h3 { margin: 0 0 4px; font-family: var(--display); font-size: 30px; color: #fff; text-shadow: 0 3px 0 rgba(20, 50, 100, .4); }
+.soon .gift p { margin: 0 0 12px; font-size: 17px; }
+.gift-code { display: inline-flex; align-items: center; gap: 10px; padding: 6px 6px 6px 18px; background: #fff; border-radius: 16px; box-shadow: 0 4px 0 rgba(20, 50, 100, .3); }
+.gift-code span { font-family: var(--display); font-size: 24px; letter-spacing: .06em; color: #24140b; user-select: all; }
+.gift-code button { padding: 10px 18px; font: inherit; font-family: var(--display); font-size: 17px; color: #fff; background: linear-gradient(#5ccf4a, #2f9d2b); border: 0; border-radius: 12px; box-shadow: 0 3px 0 #1f6e1c; cursor: pointer; }
+.gift-code button:active { transform: translateY(2px); box-shadow: 0 1px 0 #1f6e1c; }
 .foot { padding: 34px 24px 40px; text-align: center; background: var(--night); color: #cdb48e; font-size: 14px; }
 .foot img { height: 54px; width: auto; margin: 0 auto 10px; opacity: .9; }
 
@@ -348,5 +358,6 @@ th .stars img { width: 17px; }
   .ptab.reds .stars img { width: 13px; } .ptab small.up { font-size: 12px; }
   .hint { margin: -12px auto 24px; font-size: 16.5px; padding: 10px 16px 10px 12px; gap: 10px; } .tapdot { width: 22px; height: 22px; }
   .soon { padding: 70px 20px 76px; } .soon-face { width: 116px; border-radius: 28px; } .soon p { font-size: 16px; }
+  .gift { flex-direction: column; text-align: center; gap: 10px; padding: 20px 18px; } .gift-face { width: 96px; } .gift h3 { font-size: 26px; } .gift-code span { font-size: 20px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-logo, .dot, .amb i { animation: none; } .amb { display: none; } html { scroll-behavior: auto; } }
