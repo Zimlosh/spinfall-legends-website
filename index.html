@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
-<link rel="stylesheet" href="style.css?v=402">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
+<link rel="stylesheet" href="style.css?v=405">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
 </head>
 <body>
 <!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
@@ -35,11 +35,7 @@
   <!-- (Oct 30, Jake) the banner: his painted meadow, and the cast on it as pictures from the game, each swaying a little: the Peasant in the middle,
        the Elven Ranger and the Dark Knight on his left, Marina and the Dragonkin on his right (data.js GAME.cast) -->
   <div class="hero-art"><div class="scene"><img class="hero-bg" src="img/scene.webp" alt="A meadow below snowy mountains"><div class="cast" id="cast"></div></div><img class="hero-logo" src="img/logo.png" alt="Spinfall Legends"></div>
-  <div class="hero-in">
-    <p class="tag">Spin into battle.</p>
-    <p class="lead">Your hero is a spinning ball with a weapon. Bounce, clash, parry and dash your way through ten lands, with your friends at your side.</p>
-    <p class="plat"><span class="dot"></span>Coming soon to iPhone and Android</p>
-  </div>
+  <!-- (Jake, Oct 30: the "Spin into battle" intro under the banner went: the banner leads straight into the counts, and "Every fight is physics" shows the game) -->
 </section>
 
 <section class="counts">
@@ -86,6 +82,12 @@
   <h2>A journey through <span class="num">10</span> lands</h2>
   <p class="sub">Each land has its own three dungeons, a delve that goes on forever, and a world boss at the end.</p>
   <div class="lands" id="lands"></div>
+  <!-- (Jake, Oct 30: let people know the game will keep growing for a long time) -->
+  <div class="beyond">
+    <img src="img/ic_map.webp" alt="">
+    <div><h3>And the map keeps growing</h3>
+      <p>Ten lands is only the beginning. Spinfall Legends is built to grow for years: new lands, heroes, bosses and events are already on the drawing board, so there will always be somewhere new to spin into.</p></div>
+  </div>
 </section>
 
 <div class="edge" data-k="rock" data-a="#efe0bf" data-b="#3b1c10" aria-hidden="true"></div>
@@ -166,8 +168,8 @@
     </div>
   </div>
   <div class="more">
-    <figure class="shot wide"><img src="img/shot_glade2.webp" alt="The Glade Fairy, the Elven Ranger and Mossback in the Glimmerwood" loading="lazy"><figcaption><b>The Glimmerwood</b>Fairies, elves and mushroom folk.</figcaption></figure>
-    <figure class="shot wide"><img src="img/shot_citadel2.webp" alt="The Hellknight and his Hellpup in the Brimstone Citadel" loading="lazy"><figcaption><b>The Infernum</b>The last land, and the hardest.</figcaption></figure>
+    <figure class="shot wide"><img src="img/shot_glade2.webp?v=2" alt="The Glade Fairy, the Elven Ranger and Mossback in the Glimmerwood" loading="lazy"><figcaption><b>The Glimmerwood</b>Fairies, elves and mushroom folk.</figcaption></figure>
+    <figure class="shot wide"><img src="img/shot_citadel2.webp?v=2" alt="The Hellknight and his Hellpup in the Brimstone Citadel" loading="lazy"><figcaption><b>The Infernum</b>The last land, and the hardest.</figcaption></figure>
   </div>
 </section>
 
