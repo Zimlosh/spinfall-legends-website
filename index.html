@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
-<link rel="stylesheet" href="style.css?v=401">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
+<link rel="stylesheet" href="style.css?v=402">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
 </head>
 <body>
 <!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
@@ -54,9 +54,10 @@
   <h2>Every fight is <em>physics</em></h2>
   <p class="sub">Aim a dash, block a swing, parry at the perfect moment, then let your ult loose. No auto-battle: you're in control.</p>
   <div class="shots">
-    <figure class="shot"><img src="img/shot_boss.webp" alt="Four heroes against Azgaroth the Demon King" loading="lazy"><figcaption><b>World bosses</b>Team up against giants with rare legendary drops.</figcaption></figure>
-    <figure class="shot"><img src="img/shot_clash.webp" alt="The Peasant and Berry against orcs in Goblin Hollow" loading="lazy"><figcaption><b>Dungeons</b>Fight through the stages, then the boss.</figcaption></figure>
-    <figure class="shot"><img src="img/shot_cove.webp" alt="Blackbeard and Marina boarding a pirate ship" loading="lazy"><figcaption><b>Co-op</b>Bring a friend into any fight.</figcaption></figure>
+    <!-- (Oct 30, Jake) each card plays ~10 s of a real fight in turn (tools/site/clips.js): data-clip the animation, data-still the picture before it plays -->
+    <figure class="shot" data-clip="clip_boss" data-still="shot_boss"><img src="img/shot_boss.webp" alt="Four heroes against Azgaroth the Demon King" loading="lazy"><span class="shot-play" aria-hidden="true"></span><figcaption><b>World bosses</b>Team up against giants with rare legendary drops.</figcaption></figure>
+    <figure class="shot" data-clip="clip_dungeon" data-still="shot_dungeon"><img src="img/shot_dungeon.webp" alt="The Peasant and Berry fighting goblins on a meadow" loading="lazy"><span class="shot-play" aria-hidden="true"></span><figcaption><b>Dungeons</b>Fight through the stages, then the boss.</figcaption></figure>
+    <figure class="shot" data-clip="clip_coop" data-still="shot_coop"><img src="img/shot_coop.webp" alt="The Peasant and the Farmer with swords on a pirate ship's deck" loading="lazy"><span class="shot-play" aria-hidden="true"></span><figcaption><b>Co-op</b>Bring a friend into any fight.</figcaption></figure>
   </div>
 </section>
 
@@ -153,20 +154,20 @@
 
 <section class="sec together" id="together">
   <div class="tog">
-    <div class="tog-shot"><img src="img/shot_pvp.webp" alt="A 2v2 in the Coliseum" loading="lazy"></div>
+    <div class="tog-shot"><img src="img/shot_guild.webp" alt="Four guildmates against the Frost Titan" loading="lazy"><span class="tog-tag">Guild boss · The Frost Titan</span></div>
     <div class="tog-copy">
       <h2>Better <em>together</em></h2>
       <ul class="ticks">
         <li><b>Party up</b> with up to three friends for dungeons and world boss raids.</li>
         <li><b>Join a guild:</b> weekly guild bosses, a guild shop, chat and a leaderboard.</li>
-        <li><b>The Coliseum:</b> 1v1 and 2v2 PvP, first to three rounds. Climb six leagues.</li>
+        <li><b>Weekly leaderboards:</b> the deepest delve and the fastest world boss kill, on Normal and Death Wish. The top players win prizes every week.</li>
         <li><b>No casino:</b> no spinning reels and no paid random rolls. You beat the boss, then you open your chest.</li>
       </ul>
     </div>
   </div>
   <div class="more">
-    <figure class="shot"><img src="img/shot_glade.webp" alt="The Glade Fairy and the Elven Ranger in the Glimmerwood" loading="lazy"><figcaption><b>The Glimmerwood</b>Fairies, elves and mushroom folk.</figcaption></figure>
-    <figure class="shot"><img src="img/shot_citadel.webp" alt="The Hellknight in the Brimstone Citadel" loading="lazy"><figcaption><b>The Infernum</b>The last land, and the hardest.</figcaption></figure>
+    <figure class="shot wide"><img src="img/shot_glade2.webp" alt="The Glade Fairy, the Elven Ranger and Mossback in the Glimmerwood" loading="lazy"><figcaption><b>The Glimmerwood</b>Fairies, elves and mushroom folk.</figcaption></figure>
+    <figure class="shot wide"><img src="img/shot_citadel2.webp" alt="The Hellknight and his Hellpup in the Brimstone Citadel" loading="lazy"><figcaption><b>The Infernum</b>The last land, and the hardest.</figcaption></figure>
   </div>
 </section>
 
@@ -208,8 +209,8 @@
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="popName"><i class="pop-grab"></i><button class="pop-x" id="popX" aria-label="Close">&times;</button><div class="pop-body" id="popBody"></div></div>
 </div>
 
-<script src="data.js?v=401"></script>
-<script src="news.js?v=401"></script>
+<script src="data.js?v=402"></script>
+<script src="news.js?v=402"></script>
 <script>
 // the content sections, filled from the game's own lists (data.js)
 const $ = id => document.getElementById(id);
@@ -404,6 +405,26 @@ if ("IntersectionObserver" in window) {
   const seen = new IntersectionObserver(es => es.forEach(e => { const a = byId[e.target.id]; if (!a || !e.isIntersecting) return;
     links.forEach(l => l.classList.toggle("on", l === a)); const nav = $("tbNav"); nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: "smooth" }); }), { rootMargin: "-45% 0px -50% 0px" });
   Object.keys(byId).forEach(id => { const s = document.getElementById(id); if (s) seen.observe(s); });
+}
+// the fight cards (Jake, Oct 30): on a wide screen one card at a time lifts and plays its clip (~10 s), then settles, and the next one plays;
+// on a phone, the card in view plays. A clip is fetched once, then each play gets a fresh link so it starts from its first frame.
+{
+  const cards = [...document.querySelectorAll(".shots .shot[data-clip]")], blobs = {};
+  const clipUrl = async k => URL.createObjectURL(await (blobs[k] = blobs[k] || fetch(`img/${k}.webp`).then(r => r.blob())));
+  const play = async c => { const img = c.querySelector("img"), u = await clipUrl(c.dataset.clip); if (img.dataset.url) URL.revokeObjectURL(img.dataset.url); img.dataset.url = u; img.src = u; c.classList.add("play"); };
+  const stop = c => { const img = c.querySelector("img"); c.classList.remove("play"); img.src = `img/${c.dataset.still}.webp`; if (img.dataset.url) { URL.revokeObjectURL(img.dataset.url); img.dataset.url = ""; } };
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches, phone = matchMedia("(max-width: 640px)");
+  if (cards.length && !still && "IntersectionObserver" in window) {
+    let seen = false, i = 0, timer = null;
+    const box = cards[0].parentNode;
+    const turn = async () => { if (!seen || phone.matches) return; cards.forEach(stop); box.classList.add("cycling"); await play(cards[i]);
+      timer = setTimeout(() => { stop(cards[i]); i = (i + 1) % cards.length; timer = setTimeout(turn, 700); }, 10000); };
+    new IntersectionObserver(es => { seen = es[0].isIntersecting; clearTimeout(timer);
+      if (seen && !phone.matches) turn(); else if (!seen) { cards.forEach(stop); box.classList.remove("cycling"); } }, { threshold: .35 }).observe(box);
+    // a phone: the card mostly in view plays, over and over
+    const po = new IntersectionObserver(es => { if (!phone.matches) return; for (const e of es) e.isIntersecting ? play(e.target) : stop(e.target); }, { threshold: .7 });
+    cards.forEach(c => po.observe(c));
+  }
 }
 // Old Garrick's code (Big Update 16): the letters as tiles, two words (Jake, Oct 30: make the code look cool); COPY puts it on the clipboard
 document.querySelector(".gc-tiles").innerHTML = ["START", "STRONG"].map(w => `<span class="gcw">${[...w].map((c, i) => `<i style="--i:${i}">${c}</i>`).join("")}</span>`).join("");

@@ -522,3 +522,29 @@ section[id], .sec[id] { scroll-margin-top: 66px; }
   .legal-card { padding: 22px 18px 26px; font-size: 16px; } .legal-card h3 { font-size: 32px; }
 }
 @media (prefers-reduced-motion: reduce) { .cm-bob, .cm-w, .cm-sh { animation: none; } .cm.l .cm-w { transform: rotate(-16deg); } .cm.r .cm-w { transform: rotate(16deg); } }
+
+/* ===== Oct 30 (Jake), part 3: the fight cards play their clips in turn; Better together's new wide pictures ===== */
+.shots .shot { transition: transform .55s cubic-bezier(.3, 1.4, .5, 1), box-shadow .45s, filter .45s; }
+.shots.cycling .shot:not(.play) { filter: saturate(.8) brightness(.9); }
+.shots .shot.play { z-index: 2; transform: translateY(-16px) scale(1.05);
+  box-shadow: 0 0 0 5px var(--cream), 0 0 0 9px var(--gold-2), 0 28px 44px rgba(40, 22, 10, .4); }
+/* a small round play mark on a card that isn't playing; it fades while the card plays */
+.shot-play { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border-radius: 50%; background: rgba(36, 20, 11, .72); box-shadow: 0 0 0 3px rgba(255, 255, 255, .7);
+  transition: opacity .35s; }
+.shot-play::after { content: ""; position: absolute; left: 17px; top: 13px; border-left: 15px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+.shot.play .shot-play { opacity: 0; }
+/* Better together: the guild boss picture wide, with a small label; the two lands below wide and calm */
+.tog-shot { position: relative; }
+.tog-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.tog-tag { position: absolute; left: 14px; bottom: 14px; padding: 7px 14px; border-radius: 14px; background: rgba(36, 20, 11, .8); color: #fff; font-family: var(--display); font-size: 16px; letter-spacing: .02em; }
+.more .shot.wide img { aspect-ratio: 4 / 3; }
+.more .shot.wide:nth-child(1) { transform: rotate(-1.2deg); } .more .shot.wide:nth-child(2) { transform: rotate(1.2deg); }
+.more .shot.wide { transition: transform .3s; } .more .shot.wide:hover { transform: rotate(0) translateY(-4px); }
+@media (max-width: 640px) {
+  .shots .shot.play { transform: none; box-shadow: 0 0 0 4px var(--cream), 0 0 0 7px var(--gold-2), 0 10px 18px rgba(40, 22, 10, .3); }
+  .shots.cycling .shot:not(.play) { filter: none; }
+  .shot-play { top: 10px; right: 10px; width: 38px; height: 38px; } .shot-play::after { left: 15px; top: 11px; border-left-width: 13px; border-top-width: 8px; border-bottom-width: 8px; }
+  .more .shot.wide:nth-child(n) { transform: none; }
+  .tog-tag { left: 10px; bottom: 10px; font-size: 14px; padding: 6px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .shots .shot, .more .shot.wide { transition: none; } }
