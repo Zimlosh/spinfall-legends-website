@@ -567,3 +567,29 @@ section[id], .sec[id] { scroll-margin-top: 66px; }
 .hero { padding-bottom: 0; } .hero .hero-art::after { height: 120px; }
 .hero + .counts { margin-top: -70px; margin-bottom: 10px; }
 @media (max-width: 640px) { .hero .hero-art::after { height: 50px; } .hero + .counts { margin-top: -26px; } }
+
+/* ===== Big Update 18 (Jake, Oct 31) ===== */
+/* the wooden header bar about 15% bigger, links included, on PC and phone */
+.topbar { height: 71px; gap: 16px; padding: 0 18px; }
+.tb-logo img { height: 51px; }
+.tb-nav a { font-size: 19.5px; padding: 8px 14px; border-radius: 16px; }
+section[id], .sec[id] { scroll-margin-top: 76px; }
+/* the stat bubbles sit BELOW the banner picture, not over it */
+.counts, .hero + .counts { margin-top: 22px; }
+/* HOW IT WORKS: four phone-shaped loops with the buttons on */
+.hows { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+.howc { position: relative; margin: 0; border-radius: 24px; overflow: hidden; background: var(--night); box-shadow: 0 0 0 5px var(--cream), 0 0 0 9px var(--rim), 0 14px 26px rgba(40, 22, 10, .28); }
+.howc img { display: block; width: 100%; aspect-ratio: 300 / 485; object-fit: cover; }   /* (the clip: the fight close up, the button bar joined under it: tools/site/howclips.js) */
+.howc figcaption { padding: 12px 14px 14px; background: var(--cream); color: var(--ink-2); font-size: 15px; line-height: 1.3; }
+.howc figcaption b { display: block; font-family: var(--display); font-weight: 400; font-size: 22px; color: var(--ink); }
+@media (max-width: 960px) { .hows { grid-template-columns: repeat(2, 1fr); max-width: 640px; } }
+@media (max-width: 640px) {
+  .topbar { height: 62px; padding: 0 0 0 12px; gap: 7px; } .tb-logo img { height: 39px; } .tb-nav a { font-size: 17px; padding: 7px 11.5px; }
+  section[id], .sec[id] { scroll-margin-top: 66px; }
+  .counts, .hero + .counts { margin-top: 14px; }
+  .hows { display: flex; gap: 14px; margin: 0 -16px; padding: 6px 16px 22px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .hows::-webkit-scrollbar { display: none; }
+  .hows > * { flex: 0 0 62%; scroll-snap-align: start; }
+  .howc { box-shadow: 0 0 0 4px var(--cream), 0 0 0 7px var(--rim), 0 10px 18px rgba(40, 22, 10, .22); border-radius: 20px; }
+  .howc figcaption { font-size: 13px; padding: 10px 12px 12px; } .howc figcaption b { font-size: 18px; }
+}

@@ -2,6 +2,8 @@
 // To post: copy one block to the top and change it. tag: "update" (out now), "soon" (coming), or "dev" (a look behind the scenes).
 // img: any picture in website/img/ (a hero h_..., a boss b_..., a relic rl_..., a weapon w_...).
 const NEWS = [
+  { date: "Oct 31, 2026", tag: "update", title: "The Workshop and three new heroes", img: "h_rifter.webp",
+    text: "Forge your weapons and relics and train your heroes and pets in the new Workshop: you pick what gets stronger. Plus three new Hero's Paths: the Rifter blinks through the air, the Chronomancer stops time, and the Voidcaller opens a black hole." },
   { date: "Oct 30, 2026", tag: "update", title: "Weekly leaderboards", img: "ic_trophy.webp",
     text: "Every land's delve and world boss now has a weekly board, on Normal and Death Wish: the deepest delve and the fastest kill. The top players win gold, ingredients and potions, and Death Wish champions a red piece." },
   { date: "Oct 30, 2026", tag: "soon", title: "Playtests are on the way", img: "icon-512.png",

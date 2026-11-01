@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spinfall Legends</title>
-<meta name="description" content="Spinfall Legends: a fantasy arena RPG where your hero is a spinning ball with a weapon. 42 heroes, 85 weapons, 10 lands, 85 bosses. Coming soon to iPhone and Android.">
+<meta name="description" content="Spinfall Legends: a fantasy arena RPG where your hero is a spinning ball with a weapon. 45 heroes, 88 weapons, 10 lands, 85 bosses. Coming soon to iPhone and Android.">
 <meta property="og:title" content="Spinfall Legends">
-<meta property="og:description" content="Spin into battle. 42 heroes, 85 weapons, 10 lands and 85 bosses. Coming soon to iPhone and Android.">
+<meta property="og:description" content="Spin into battle. 45 heroes, 88 weapons, 10 lands and 85 bosses. Coming soon to iPhone and Android.">
 <meta property="og:image" content="img/share.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
-<link rel="stylesheet" href="style.css?v=405">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
+<link rel="stylesheet" href="style.css?v=413">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
 </head>
 <body>
 <!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
@@ -27,7 +27,7 @@
 <header class="topbar" id="top">
   <a class="tb-logo" href="#top" aria-label="Spinfall Legends: back to the top"><img src="img/logo-small.png" alt="Spinfall Legends"></a>
   <nav class="tb-nav" id="tbNav" aria-label="Sections">
-    <a href="#news">News</a><a href="#heroes">Heroes</a><a href="#weapons">Weapons</a><a href="#world">Lands</a><a href="#bosses">Bosses</a><a href="#more">Pets</a><a href="#wanted">Wanted</a><a href="#brew">Brew</a><a href="#rift">Relics</a><a href="#together">Together</a><a class="tb-gift" href="#soon">Gift code</a>
+    <a href="#how">How</a><a href="#news">News</a><a href="#heroes">Heroes</a><a href="#weapons">Weapons</a><a href="#world">Lands</a><a href="#bosses">Bosses</a><a href="#more">Pets</a><a href="#wanted">Wanted</a><a href="#brew">Brew</a><a href="#rift">Relics</a><a href="#together">Together</a><a class="tb-gift" href="#soon">Gift code</a>
   </nav>
 </header>
 
@@ -39,8 +39,8 @@
 </section>
 
 <section class="counts">
-  <div><b data-n="42">42</b><span>Heroes</span></div>
-  <div><b data-n="85">85</b><span>Weapons</span></div>
+  <div><b data-n="45">45</b><span>Heroes</span></div>
+  <div><b data-n="88">88</b><span>Weapons</span></div>
   <div><b data-n="10">10</b><span>Lands</span></div>
   <div><b data-n="85">85</b><span>Bosses</span></div>
   <div><b data-n="11">11</b><span>Pets</span></div>
@@ -57,6 +57,19 @@
   </div>
 </section>
 
+<section class="sec how" id="how">
+  <!-- (Big Update 18, Jake, Oct 31) HOW IT WORKS: four short loops from the game with the buttons and bars ON, so people see what is pressed
+       and what happens (tools/site/howclips.js). Each plays while it is in view. -->
+  <h2>How it <em>works</em></h2>
+  <p class="sub">Four moves win every fight. You press them; the physics does the rest.</p>
+  <div class="hows">
+    <figure class="howc" data-clip="how_parry"><img src="img/howstill_parry.webp" alt="The Peasant blocking a brute's club at the last moment" loading="lazy"><figcaption><b>Block &amp; parry</b>Tap BLOCK just as a hit lands: a perfect parry stuns them.</figcaption></figure>
+    <figure class="howc" data-clip="how_ult"><img src="img/howstill_ult.webp" alt="The Dragonkin's ult button lights up, then he breathes fire" loading="lazy"><figcaption><b>Ultimate</b>Hits fill your ult. When it lights up, let it loose.</figcaption></figure>
+    <figure class="howc" data-clip="how_potion"><img src="img/howstill_potion.webp" alt="A hero low on health drinks a potion and the health bar climbs back" loading="lazy"><figcaption><b>Potion</b>Low on health? Drink up and watch the bar climb back.</figcaption></figure>
+    <figure class="howc" data-clip="how_dash"><img src="img/howstill_dash.webp" alt="The Peasant dashing through a crowd of goblins" loading="lazy"><figcaption><b>Dash</b>Aim a dash and spin straight through them.</figcaption></figure>
+  </div>
+</section>
+
 <section class="sec news" id="news">
   <h2>What's <em>new</em></h2>
   <p class="sub">Updates from the workshop, and what's coming next.</p>
@@ -64,7 +77,7 @@
 </section>
 
 <section class="sec heroes" id="heroes">
-  <h2><span class="num">42</span> heroes to collect</h2>
+  <h2><span class="num">45</span> heroes to collect</h2>
   <p class="sub">From a peasant with a loaf of bread to a demon knight and a fallen angel. Every hero has their own ult and passive, levels up to 100, and can become a veteran.</p>
   <p class="hint"><span class="tapdot"></span>Tap any hero to see their ult, passive and veteran numbers</p>
   <div class="facewall" id="faceWall"></div>
@@ -72,7 +85,7 @@
 </section>
 
 <section class="sec weapons" id="weapons">
-  <h2><span class="num">85</span> weapons to master</h2>
+  <h2><span class="num">88</span> weapons to master</h2>
   <p class="sub">Swords, bows, flails, staffs, shields, a war drum, a magic tome... Every one spins differently, and many hide a trick: bursts, poison, worms under the sand.</p>
   <p class="hint"><span class="tapdot"></span>Tap any weapon to see its ability, numbers and red stars</p>
   <div class="rack" id="rack"></div>
@@ -211,8 +224,8 @@
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="popName"><i class="pop-grab"></i><button class="pop-x" id="popX" aria-label="Close">&times;</button><div class="pop-body" id="popBody"></div></div>
 </div>
 
-<script src="data.js?v=402"></script>
-<script src="news.js?v=402"></script>
+<script src="data.js?v=413"></script>
+<script src="news.js?v=413"></script>
 <script>
 // the content sections, filled from the game's own lists (data.js)
 const $ = id => document.getElementById(id);
@@ -407,6 +420,15 @@ if ("IntersectionObserver" in window) {
   const seen = new IntersectionObserver(es => es.forEach(e => { const a = byId[e.target.id]; if (!a || !e.isIntersecting) return;
     links.forEach(l => l.classList.toggle("on", l === a)); const nav = $("tbNav"); nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: "smooth" }); }), { rootMargin: "-45% 0px -50% 0px" });
   Object.keys(byId).forEach(id => { const s = document.getElementById(id); if (s) seen.observe(s); });
+}
+// HOW IT WORKS (Big Update 18): each card plays its loop while it is in view (the still picture until then, so the page loads light)
+{
+  const cards = [...document.querySelectorAll(".howc[data-clip]")];
+  if (cards.length && !matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => { for (const e of es) { const img = e.target.querySelector("img"), clip = `img/${e.target.dataset.clip}.webp`;
+      if (e.isIntersecting && !img.src.endsWith(clip)) { img.dataset.still = img.dataset.still || img.getAttribute("src"); img.src = clip; } else if (!e.isIntersecting && img.dataset.still) img.src = img.dataset.still; } }, { threshold: .4 });
+    cards.forEach(c => io.observe(c));
+  }
 }
 // the fight cards (Jake, Oct 30): on a wide screen one card at a time lifts and plays its clip (~10 s), then settles, and the next one plays;
 // on a phone, the card in view plays. A clip is fetched once, then each play gets a fresh link so it starts from its first frame.
