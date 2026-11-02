@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
-<link rel="stylesheet" href="style.css?v=413">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
+<link rel="stylesheet" href="style.css?v=414">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
 </head>
 <body>
 <!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
@@ -58,15 +58,17 @@
 </section>
 
 <section class="sec how" id="how">
-  <!-- (Big Update 18, Jake, Oct 31) HOW IT WORKS: four short loops from the game with the buttons and bars ON, so people see what is pressed
-       and what happens (tools/site/howclips.js). Each plays while it is in view. -->
+  <!-- (Jake, Nov 1) HOW IT WORKS: one video (tools/site/howclips.js), four moments of 4 seconds each, no buttons; the words under it switch at each cut -->
   <h2>How it <em>works</em></h2>
   <p class="sub">Four moves win every fight. You press them; the physics does the rest.</p>
-  <div class="hows">
-    <figure class="howc" data-clip="how_parry"><img src="img/howstill_parry.webp" alt="The Peasant blocking a brute's club at the last moment" loading="lazy"><figcaption><b>Block &amp; parry</b>Tap BLOCK just as a hit lands: a perfect parry stuns them.</figcaption></figure>
-    <figure class="howc" data-clip="how_ult"><img src="img/howstill_ult.webp" alt="The Dragonkin's ult button lights up, then he breathes fire" loading="lazy"><figcaption><b>Ultimate</b>Hits fill your ult. When it lights up, let it loose.</figcaption></figure>
-    <figure class="howc" data-clip="how_potion"><img src="img/howstill_potion.webp" alt="A hero low on health drinks a potion and the health bar climbs back" loading="lazy"><figcaption><b>Potion</b>Low on health? Drink up and watch the bar climb back.</figcaption></figure>
-    <figure class="howc" data-clip="how_dash"><img src="img/howstill_dash.webp" alt="The Peasant dashing through a crowd of goblins" loading="lazy"><figcaption><b>Dash</b>Aim a dash and spin straight through them.</figcaption></figure>
+  <figure class="howv">
+    <video id="howVid" muted loop playsinline preload="metadata" poster="img/how_still.webp?v=414" aria-label="Four moments from real fights: a dash through raiders, a shield parry, a health potion, and the Dragonkin's Fire Breath"><source src="img/how.mp4?v=414" type="video/mp4"></video>
+  </figure>
+  <div class="howcap" id="howCap">
+    <p class="on"><b>Dash</b>Aim it and spin straight through.</p>
+    <p><b>Block &amp; Parry</b>Block right as a hit lands to parry it.</p>
+    <p><b>Potion</b>Low on health? Drink up.</p>
+    <p><b>Ultimate</b>Hits fill it. When it lights up, let it loose.</p>
   </div>
 </section>
 
@@ -224,8 +226,8 @@
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="popName"><i class="pop-grab"></i><button class="pop-x" id="popX" aria-label="Close">&times;</button><div class="pop-body" id="popBody"></div></div>
 </div>
 
-<script src="data.js?v=413"></script>
-<script src="news.js?v=413"></script>
+<script src="data.js?v=414"></script>
+<script src="news.js?v=414"></script>
 <script>
 // the content sections, filled from the game's own lists (data.js)
 const $ = id => document.getElementById(id);
@@ -421,14 +423,17 @@ if ("IntersectionObserver" in window) {
     links.forEach(l => l.classList.toggle("on", l === a)); const nav = $("tbNav"); nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: "smooth" }); }), { rootMargin: "-45% 0px -50% 0px" });
   Object.keys(byId).forEach(id => { const s = document.getElementById(id); if (s) seen.observe(s); });
 }
-// HOW IT WORKS (Big Update 18): each card plays its loop while it is in view (the still picture until then, so the page loads light)
+// HOW IT WORKS (Jake, Nov 1): the video plays while it is in view, and the words under it follow it: four moments of 4 seconds each (tools/site/howclips.js)
 {
-  const cards = [...document.querySelectorAll(".howc[data-clip]")];
-  if (cards.length && !matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
-    const io = new IntersectionObserver(es => { for (const e of es) { const img = e.target.querySelector("img"), clip = `img/${e.target.dataset.clip}.webp`;
-      if (e.isIntersecting && !img.src.endsWith(clip)) { img.dataset.still = img.dataset.still || img.getAttribute("src"); img.src = clip; } else if (!e.isIntersecting && img.dataset.still) img.src = img.dataset.still; } }, { threshold: .4 });
-    cards.forEach(c => io.observe(c));
-  }
+  const vid = $("howVid"), caps = [...document.querySelectorAll("#howCap p")], SECS = 4;
+  let shown = 0, tick = null;
+  const sync = () => { const i = Math.min(caps.length - 1, Math.floor(vid.currentTime / SECS)); if (i !== shown) { caps[shown].classList.remove("on"); caps[i].classList.add("on"); shown = i; } };
+  const follow = () => { sync(); tick = requestAnimationFrame(follow); };
+  vid.addEventListener("play", () => { cancelAnimationFrame(tick); follow(); });
+  vid.addEventListener("pause", () => { cancelAnimationFrame(tick); sync(); });
+  vid.addEventListener("seeked", sync);
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) vid.controls = true;   // (people who asked for less motion press play themselves)
+  else new IntersectionObserver(es => { if (es[0].isIntersecting) vid.play().catch(() => { vid.controls = true; }); else vid.pause(); }, { threshold: .4 }).observe(vid);
 }
 // the fight cards (Jake, Oct 30): on a wide screen one card at a time lifts and plays its clip (~10 s), then settles, and the next one plays;
 // on a phone, the card in view plays. A clip is fetched once, then each play gets a fresh link so it starts from its first frame.
