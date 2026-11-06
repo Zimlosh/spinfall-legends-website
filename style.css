@@ -589,3 +589,11 @@ section[id], .sec[id] { scroll-margin-top: 76px; }
   section[id], .sec[id] { scroll-margin-top: 66px; }
   .counts, .hero + .counts { margin-top: 14px; }
 }
+
+/* (Jake, Nov 5: the header was glitchy on phones) the fade at its right end is an overlay, not a mask on the scrolling links: a mask on a
+   scrolling row flickers in Safari on iPhone while the page scrolls under the sticky bar; the row keeps its own sideways scroll to itself */
+@media (max-width: 960px) {
+  .tb-nav { -webkit-mask-image: none; mask-image: none; overscroll-behavior-x: contain; touch-action: pan-x; padding-right: 34px; }
+  .topbar { overflow: hidden; }
+  .topbar::after { content: ""; position: absolute; right: 0; top: 0; bottom: 6px; width: 46px; pointer-events: none; background: linear-gradient(90deg, rgba(122, 72, 37, 0), #6a3d1f 80%); }
+}

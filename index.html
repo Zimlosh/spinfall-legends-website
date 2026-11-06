@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap">
-<link rel="stylesheet" href="style.css?v=441">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
+<link rel="stylesheet" href="style.css?v=494">   <!-- (?v=: bump it with every website update, so no visitor gets an old copy of a file with the new page) -->
 </head>
 <body>
 <!-- Spinfall Legends' landing page (redone Oct 28). Plain HTML, CSS and a little JavaScript, no build step: upload this folder to any static host
@@ -34,7 +34,7 @@
 <section class="hero">
   <!-- (Oct 30, Jake) the banner: his painted meadow, and the cast on it as pictures from the game, each swaying a little: the Peasant in the middle,
        the Elven Ranger and the Dark Knight on his left, Marina and the Dragonkin on his right (data.js GAME.cast) -->
-  <div class="hero-art"><div class="scene"><img class="hero-bg" src="img/scene.webp" alt="A meadow below snowy mountains"><div class="cast" id="cast"></div></div><img class="hero-logo" src="img/logo.png" alt="Spinfall Legends"></div>
+  <div class="hero-art"><div class="scene"><img class="hero-bg" src="img/scene.webp?v=494" alt="A meadow below snowy mountains"><div class="cast" id="cast"></div></div><img class="hero-logo" src="img/logo.png" alt="Spinfall Legends"></div>
   <!-- (Jake, Oct 30: the "Spin into battle" intro under the banner went: the banner leads straight into the counts, and "Every fight is physics" shows the game) -->
 </section>
 
@@ -62,7 +62,7 @@
   <h2>How it <em>works</em></h2>
   <p class="sub">Four moves win every fight. You press them; the physics does the rest.</p>
   <figure class="howv">
-    <video id="howVid" muted loop playsinline preload="metadata" poster="img/how_still.webp?v=441" aria-label="Four moments from real fights: a dash through raiders, a parry, a health potion, and the Dragonkin's Fire Breath"><source src="img/how.mp4?v=441" type="video/mp4"></video>
+    <video id="howVid" muted loop playsinline preload="metadata" poster="img/how_still.webp?v=494" aria-label="Four moments from real fights: a dash through raiders, a parry, a health potion, and the Dragonkin's Fire Breath"><source src="img/how.mp4?v=494" type="video/mp4"></video>
   </figure>
   <div class="howcap" id="howCap">
     <p class="on"><b>Dash</b>Aim it and spin straight through.</p>
@@ -226,8 +226,8 @@
   <div class="pop-card" role="dialog" aria-modal="true" aria-labelledby="popName"><i class="pop-grab"></i><button class="pop-x" id="popX" aria-label="Close">&times;</button><div class="pop-body" id="popBody"></div></div>
 </div>
 
-<script src="data.js?v=441"></script>
-<script src="news.js?v=441"></script>
+<script src="data.js?v=494"></script>
+<script src="news.js?v=494"></script>
 <script>
 // the content sections, filled from the game's own lists (data.js)
 const $ = id => document.getElementById(id);
@@ -417,10 +417,21 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
   document.querySelectorAll(".counts > div").forEach(d => cio.observe(d));
 }
 // the header: the section you're reading is lit up in it (and on a phone, its link slides into view)
+// (Jake, Nov 5: "glitchy on mobile": it slid on every section passed, fighting the page's own scroll. Now it waits for the page to settle,
+// never moves while a finger is on it, and only moves when the lit link is actually out of view)
+let navT = 0, navHeld = false;
+{ const nav = document.getElementById("tbNav"); nav.addEventListener("touchstart", () => { navHeld = true; }, { passive: true }); nav.addEventListener("touchend", () => { setTimeout(() => { navHeld = false; }, 600); }, { passive: true }); }
+function navSlide(a) {
+  clearTimeout(navT); navT = setTimeout(() => {
+    const nav = document.getElementById("tbNav"); if (navHeld || nav.scrollWidth <= nav.clientWidth + 2) return;
+    const n = nav.getBoundingClientRect(), r = a.getBoundingClientRect(); if (r.left >= n.left + 8 && r.right <= n.right - 40) return;   // (already in view, clear of the fade)
+    nav.scrollTo({ left: nav.scrollLeft + (r.left + r.width / 2) - (n.left + n.width / 2), behavior: "smooth" });
+  }, 220);
+}
 if ("IntersectionObserver" in window) {
   const links = [...document.querySelectorAll("#tbNav a")], byId = Object.fromEntries(links.map(a => [a.getAttribute("href").slice(1), a]));
   const seen = new IntersectionObserver(es => es.forEach(e => { const a = byId[e.target.id]; if (!a || !e.isIntersecting) return;
-    links.forEach(l => l.classList.toggle("on", l === a)); const nav = $("tbNav"); nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.clientWidth / 2, behavior: "smooth" }); }), { rootMargin: "-45% 0px -50% 0px" });
+    links.forEach(l => l.classList.toggle("on", l === a)); navSlide(a); }), { rootMargin: "-45% 0px -50% 0px" });
   Object.keys(byId).forEach(id => { const s = document.getElementById(id); if (s) seen.observe(s); });
 }
 // HOW IT WORKS (Jake, Nov 1): the video plays while it is in view, and the words under it follow it: four moments of 4 seconds each (tools/site/howclips.js)
