@@ -5,7 +5,7 @@ const NEWS = [
   { date: "Oct 31, 2026", tag: "update", title: "The Workshop and three new heroes", img: "h_rifter.webp",
     text: "Forge your weapons and relics and train your heroes and pets in the new Workshop: you pick what gets stronger. Plus three new Hero's Paths: the Rifter blinks through the air, the Chronomancer stops time, and the Voidcaller opens a black hole." },
   { date: "Oct 30, 2026", tag: "update", title: "Weekly leaderboards", img: "ic_trophy.webp",
-    text: "Every land's delve and world boss now has a weekly board, on Normal and Death Wish: the deepest delve and the fastest kill. The top players win gold, ingredients and potions, and Death Wish champions a red piece." },
+    text: "Every land's delve and world boss now has a weekly board, on Normal and Insane: the deepest delve and the fastest kill. The top players win gold, ingredients and potions, and Insane champions a red piece." },
   { date: "Oct 30, 2026", tag: "soon", title: "Playtests are on the way", img: "icon-512.png",
     text: "Spinfall Legends is getting ready for its first playtests on iPhone and Android. Dates will be posted right here." },
   { date: "Oct 29, 2026", tag: "update", title: "The Collector arrives", img: "h_collector.webp",
